@@ -20,7 +20,7 @@ $config = [
     ],
     'components' => [
         'request' => [
-            'cookieValidationKey' => '', // wajib diisi
+            'cookieValidationKey' => '8t8yL6uMEYcbN-pFfFKlauo7JLwhucL5',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
