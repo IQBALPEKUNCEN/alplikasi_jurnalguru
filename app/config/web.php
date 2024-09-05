@@ -10,6 +10,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    "name" => "Jurnal Guru",
     'basePath' => dirname(__DIR__),
     'timeZone' => 'Asia/Jakarta',
     'bootstrap' => ['log'],
