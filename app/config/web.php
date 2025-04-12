@@ -10,6 +10,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'Jurnal Guru',
     'basePath' => dirname(__DIR__),
     'timeZone' => 'Asia/Jakarta',
     'bootstrap' => ['log'],
@@ -55,14 +56,16 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+    'enablePrettyUrl' => true,
+    'showScriptName' => false,
+    'rules' => [
+        'jurnal/laporan' => 'jurnal/laporan',
+    ],
+],
+
+        
     ],
     'params' => $params,
     'on beforeRequest' => function () {

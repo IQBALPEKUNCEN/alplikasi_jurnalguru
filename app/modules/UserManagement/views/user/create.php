@@ -8,7 +8,7 @@ use app\modules\UserManagement\UserManagementModule;
  */
 
 $this->title = UserManagementModule::t('back', 'User creation');
-$this->params['breadcrumbs'][] = ['label' => UserManagementModule::t('back', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => UserManagementModule::t('back', 'User'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-create">

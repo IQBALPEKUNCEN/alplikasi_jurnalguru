@@ -4,7 +4,7 @@ use app\modules\UserManagement\extensions\BootstrapSwitch\BootstrapSwitch;
 use app\modules\UserManagement\models\User;
 use app\modules\UserManagement\UserManagementModule;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 
 /**
  * @var yii\web\View $this

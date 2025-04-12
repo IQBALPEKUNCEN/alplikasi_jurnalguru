@@ -14,7 +14,7 @@ use yii\widgets\DetailView;
  */
 
 $this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => UserManagementModule::t('back', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => UserManagementModule::t('back', 'User'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<?= GhostHtml::a(UserManagementModule::t('back', 'Delete'), ['delete', 'id' => $model->id], [
 					'class' => 'btn btn-sm btn-danger pull-right',
 					'data' => [
-						'confirm' => UserManagementModule::t('back', 'Are you sure you want to delete this user?'),
+						'confirm' => UserManagementModule::t('back', 'anda yakin ingin menghapus akun ini?'),
 						'method' => 'post',
 					],
 				]) ?>

@@ -1,0 +1,122 @@
+<?php
+
+namespace app\models\base;
+
+use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
+use mootensai\behaviors\UUIDBehavior;
+
+/**
+ * This is the base model class for table "jurusan".
+ *
+ * @property string $kode_jurusan
+ * @property string $nama
+ *
+ * @property \app\models\Kelas[] $kelas
+ */
+class Jurusan extends \yii\db\ActiveRecord
+{
+    use \mootensai\relation\RelationTrait;
+
+
+    public function __construct(){
+    }
+
+    /**
+    * This function helps \mootensai\relation\RelationTrait runs faster
+    * @return array relation names of this model
+    */
+    public function relationNames()
+    {
+        return [
+            'kelas'
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['kode_jurusan'], 'required'],
+            [['kode_jurusan', 'nama'], 'string', 'max' => 20],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'jurusan';
+    }
+
+    /**
+     *
+     * @return string
+     * overwrite function optimisticLock
+     * return string name of field are used to stored optimistic lock
+     *
+     */
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'kode_jurusan' => 'Kode Jurusan',
+            'nama' => 'Nama',
+        ];
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKelas()
+    {
+        return $this->hasMany(\app\models\Kelas::className(), ['kode_jurusan' => 'kode_jurusan']);
+    }
+    
+    /**
+     * @inheritdoc
+     * @return array mixed
+     */
+    public function behaviors()
+    {
+        return [];
+    }
+
+    /**
+     * The following code shows how to apply a default condition for all queries:
+     *
+     * ```php
+     * class Customer extends ActiveRecord
+     * {
+     *     public static function find()
+     *     {
+     *         return parent::find()->where(['deleted' => false]);
+     *     }
+     * }
+     *
+     * // Use andWhere()/orWhere() to apply the default condition
+     * // SELECT FROM customer WHERE `deleted`=:deleted AND age>30
+     * $customers = Customer::find()->andWhere('age>30')->all();
+     *
+     * // Use where() to ignore the default condition
+     * // SELECT FROM customer WHERE age>30
+     * $customers = Customer::find()->where('age>30')->all();
+     * ```
+     */
+
+    /**
+     * @inheritdoc
+     * @return \app\models\JurusanQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \app\models\JurusanQuery(get_called_class());
+    }
+}

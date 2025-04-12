@@ -19,7 +19,7 @@ use yii\widgets\Pjax;
  * @var app\modules\UserManagement\models\search\UserSearch $searchModel
  */
 
-$this->title = UserManagementModule::t('back', 'Users');
+$this->title = UserManagementModule::t('back', 'User');
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['useContainer'] = false;
 ?>

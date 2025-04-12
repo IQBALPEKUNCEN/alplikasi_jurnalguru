@@ -147,31 +147,52 @@ class Route extends AbstractItem
 	 * @return boolean
 	 */
 	public static function isRouteAllowed($route, $allowedRoutes)
-	{
-		if (in_array($route, $allowedRoutes)) {
-			return true;
-		}
+{
+    // Memastikan user sudah login
+    if (!Yii::$app->user->isGuest) {
+        // Memberikan akses hanya untuk user "iqbal" ke halaman jurnal
+        if (Yii::$app->user->identity->username === 'iqbal') {
+            // Hanya memberikan akses ke '/jurnal/index' dan tidak yang lainnya, termasuk laporan dan data sekolah
+            if ($route === '/jurnal/index') {
+                return true; // Akses diizinkan ke halaman jurnal
+            } else if (strpos($route, '/tahunajaran') === 0 || strpos($route, '/jenjang') === 0 || 
+                       strpos($route, '/kelas') === 0 || strpos($route, '/siswa') === 0 || 
+                       strpos($route, '/guru') === 0) {
+                return false; // Akses ditolak untuk halaman data sekolah
+            }
+            return false; // Akses ditolak untuk rute lain
+        }
+    } else {
+        // Jika user adalah guest, tidak memberikan akses ke rute khusus
+        return false;
+    }
+
+    // Memeriksa apakah rute ada di daftar yang diizinkan
+    if (in_array($route, $allowedRoutes)) {
+        return true;
+    }
+
+    // Memeriksa wildcard controller (misalnya '/controller/*')
+    foreach ($allowedRoutes as $allowedRoute) {
+        if (substr($allowedRoute, -1) == '*') {
+            $routeArray = explode('/', $route);
+            array_splice($routeArray, -1);
+
+            $allowedRouteArray = explode('/', $allowedRoute);
+            array_splice($allowedRouteArray, -1);
+
+            // Memeriksa apakah rute sama dengan rute wildcard
+            if (array_diff($routeArray, $allowedRouteArray) === array()) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
 
 
-		foreach ($allowedRoutes as $allowedRoute) {
-			// If some controller fully allowed (wildcard)
-			if (substr($allowedRoute, -1) == '*') {
-				$routeArray = explode('/', $route);
-				array_splice($routeArray, -1);
 
-				$allowedRouteArray = explode('/', $allowedRoute);
-				array_splice($allowedRouteArray, -1);
-
-				if (array_diff($routeArray, $allowedRouteArray) === array())
-					return true;
-			}
-		}
-
-		// var_dump('auth');
-		// die;
-
-		return false;
-	}
 
 
 	/**
