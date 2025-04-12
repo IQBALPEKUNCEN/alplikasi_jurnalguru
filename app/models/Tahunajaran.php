@@ -15,6 +15,7 @@ class Tahunajaran extends BaseTahunajaran
      */
     public function rules()
     {
+<<<<<<< HEAD
         return array_replace_recursive(
             parent::rules(),
             [
@@ -26,4 +27,17 @@ class Tahunajaran extends BaseTahunajaran
             ]
         );
     }
+=======
+        return array_replace_recursive(parent::rules(),
+	    [
+            [['kodeta'], 'required'],
+            [['semester'], 'string'],
+            [['kodeta', 'namata'], 'string', 'max' => 20],
+            [['isaktif'], 'string', 'max' => 1],
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+        ]);
+    }
+	
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 }

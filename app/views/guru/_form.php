@@ -23,13 +23,22 @@ use kartik\form\ActiveForm;
 
     <?= $form->errorSummary($model); ?>
 
+<<<<<<< HEAD
     <?= $form->field($model, 'guru_id')->textInput(['maxlength' => true, 'placeholder' => 'Guru']) ?> 
+=======
+    <?= $form->field($model, 'guru_id')->textInput(['maxlength' => true, 'placeholder' => 'Guru']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true, 'placeholder' => 'Nama']) ?>
 
     <?= $form->field($model, 'kode_jk')->widget(\kartik\widgets\Select2::classname(), [
+<<<<<<< HEAD
         'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Jeniskelamin::find()->orderBy('nama')->asArray()->all(), 'kode_jk', 'nama'),
         'options' => ['placeholder' => 'pilih  Jenis kelamin'],
+=======
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Jeniskelamin::find()->orderBy('kode_jk')->asArray()->all(), 'kode_jk', 'kode_jk'),
+        'options' => ['placeholder' => 'Choose Jeniskelamin'],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         'pluginOptions' => [
             'allowClear' => true
         ],
@@ -54,8 +63,13 @@ use kartik\form\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'alamat')->textInput(['maxlength' => true, 'placeholder' => 'Alamat']) ?>
+<<<<<<< HEAD
  <!-- menghapus filter jurnal pada form guru  -->
     <!-- <?php
+=======
+
+    <?php
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     $forms = [
         [
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Jurnal'),
@@ -74,11 +88,18 @@ use kartik\form\ActiveForm;
             'enableCache' => false,
         ],
     ]);
+<<<<<<< HEAD
     ?> -->
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Tambah' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Batal'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
+=======
+    ?>
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     </div>
 
     <?php ActiveForm::end(); ?>

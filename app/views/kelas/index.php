@@ -46,6 +46,7 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Jenjang', 'id' => 'grid-kelas-search-kode_jenjang']
             ],
+<<<<<<< HEAD
             // [
             //     'attribute' => 'kode_jurusan',
             //     'label' => 'Kode Jurusan',
@@ -62,6 +63,24 @@ $this->registerJs($search);
             //     ],
             //     'filterInputOptions' => ['placeholder' => 'Jurusan', 'id' => 'grid-kelas-search-kode_jurusan']
             // ],
+=======
+            [
+                'attribute' => 'kode_jurusan',
+                'label' => 'Kode Jurusan',
+                'value' => function($model){
+                    if ($model->kodeJurusan)
+                    {return $model->kodeJurusan->kode_jurusan;}
+                    else
+                    {return NULL;}
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\base\Jurusan::find()->asArray()->all(), 'kode_jurusan', 'kode_jurusan'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Jurusan', 'id' => 'grid-kelas-search-kode_jurusan']
+            ],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             'nama',
             [
             'class' => 'yii\grid\ActionColumn',
@@ -77,7 +96,11 @@ $this->registerJs($search);
     <div class="d-flex justify-content-between mb-4">
         <div>
             <?= GhostHtml::a('<span class=\'glyphicon glyphicon-plus-sign\'></span> Tambah', ['/kelas/create'], ['class' => 'btn btn-success']) ?>
+<<<<<<< HEAD
             <!-- <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?> -->
+=======
+            <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             </div>
             <?= ExportMenu::widget([
                 'dataProvider' => $dataProvider,

@@ -24,7 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GhostHtml::a('Delete', ['/jurusan/delete', 'id' => $model->kode_jurusan], [
                 'class' => 'btn btn-danger',
                 'data' => [
+<<<<<<< HEAD
                     'confirm' => 'Apakah anda ingin menghapus ini?',
+=======
+                    'confirm' => 'Are you sure you want to delete this item?',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                     'method' => 'post',
                 ],
             ])

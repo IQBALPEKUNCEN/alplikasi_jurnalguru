@@ -20,7 +20,13 @@ class Jenjang extends \yii\db\ActiveRecord
     use \mootensai\relation\RelationTrait;
 
     
+<<<<<<< HEAD
     public function __construct(){
+=======
+
+    public function __construct(){
+        
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -42,6 +48,11 @@ class Jenjang extends \yii\db\ActiveRecord
         return [
             [['kode_jenjang'], 'required'],
             [['kode_jenjang', 'nama'], 'string', 'max' => 20],
+<<<<<<< HEAD
+=======
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -60,7 +71,13 @@ class Jenjang extends \yii\db\ActiveRecord
      * return string name of field are used to stored optimistic lock
      *
      */
+<<<<<<< HEAD
    
+=======
+    public function optimisticLock() {
+        return 'lock';
+    }
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
     /**
      * @inheritdoc
@@ -88,6 +105,24 @@ class Jenjang extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+<<<<<<< HEAD
+=======
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+            'uuid' => [
+                'class' => UUIDBehavior::className(),
+                'column' => 'id',
+            ],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -120,5 +155,9 @@ class Jenjang extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\models\JenjangQuery(get_called_class());
+<<<<<<< HEAD
+=======
+        
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 }

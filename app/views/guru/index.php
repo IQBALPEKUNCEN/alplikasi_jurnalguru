@@ -8,7 +8,10 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use app\modules\UserManagement\components\GhostHtml;
 use kartik\grid\GridView;
+<<<<<<< HEAD
 use yii\grid\ActionColumn;
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
 $this->title = 'Guru';
 $this->params['breadcrumbs'][] = $this->title;
@@ -30,19 +33,31 @@ $this->registerJs($search);
         <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
+<<<<<<< HEAD
             'guru_id',
+=======
+                'guru_id',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             'nama',
             [
                 'attribute' => 'kode_jk',
                 'label' => 'Kode Jk',
                 'value' => function($model){
                     if ($model->kodeJk)
+<<<<<<< HEAD
                     {return $model->kodeJk->nama;}
+=======
+                    {return $model->kodeJk->kode_jk;}
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                     else
                     {return NULL;}
                 },
                 'filterType' => GridView::FILTER_SELECT2,
+<<<<<<< HEAD
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\base\Jeniskelamin::find()->asArray()->all(), 'kode_jk', 'nama'),
+=======
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\base\Jeniskelamin::find()->asArray()->all(), 'kode_jk', 'kode_jk'),
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
@@ -51,6 +66,7 @@ $this->registerJs($search);
             'nip',
             'nik',
             'tempat_lahir',
+<<<<<<< HEAD
             // [
             //     'attribute' => 'tanggal_lahir',
             //     'value' => function($model){
@@ -79,6 +95,9 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Pilih Tanggal'],
             ],
+=======
+            'tanggal_lahir',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             'alamat',
             [
             'class' => 'yii\grid\ActionColumn',
@@ -87,6 +106,7 @@ $this->registerJs($search);
             ],
             'contentOptions' => ['class' => 'nowrap text-center'],
                 ],
+<<<<<<< HEAD
                 // [
                 //     'class' => ActionColumn::className(),
                 //     'buttons' => [
@@ -109,6 +129,8 @@ $this->registerJs($search);
                 //         },    
                 //     ],
                 // ],
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ]; 
     
     ?>
@@ -116,7 +138,11 @@ $this->registerJs($search);
     <div class="d-flex justify-content-between mb-4">
         <div>
             <?= GhostHtml::a('<span class=\'glyphicon glyphicon-plus-sign\'></span> Tambah', ['/guru/create'], ['class' => 'btn btn-success']) ?>
+<<<<<<< HEAD
             <!-- <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?> -->
+=======
+            <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             </div>
             <?= ExportMenu::widget([
                 'dataProvider' => $dataProvider,

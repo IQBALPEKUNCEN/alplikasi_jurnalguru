@@ -42,6 +42,7 @@
         'encodeLabels' => false,
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index'], 'visible' => true],
+<<<<<<< HEAD
 
             // Opsi Data Sekolah
             [
@@ -77,6 +78,19 @@
             ],
 
             // Opsi User Management
+=======
+            ['label' => 'Hari', 'url' => ['/hari/index'], 'visible' => true],
+            ['label' => 'Guru', 'url' => ['/guru/index'], 'visible' => true],
+            ['label' => 'History kelas', 'url' => ['/historykelas/index'], 'visible' => true],
+            ['label' => 'Jenjang', 'url' => ['/jenjang/index'], 'visible' => true],
+            ['label' => 'Jurnal', 'url' => ['/jurnal/index'], 'visible' => true],
+            ['label' => 'Jurnal detil', 'url' => ['/jurnal-detil/index'], 'visible' => true],
+            ['label' => 'Jurusan', 'url' => ['/jurusan/index'], 'visible' => true],
+            ['label' => 'Kelas', 'url' => ['/kelas/index'], 'visible' => true],
+            ['label' => 'Mapel', 'url' => ['/mapel/index'], 'visible' => true],
+            ['label' => 'Siswa', 'url' => ['/siswa/index'], 'visible' => true],
+            ['label' => 'Tahun ajaran', 'url' => ['/tahunajaran/index'], 'visible' => true],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             [
                 'label' => 'User Management',
                 'url' => '#',

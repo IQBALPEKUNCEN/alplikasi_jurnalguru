@@ -27,6 +27,7 @@ echo TabularForm::widget([
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
+<<<<<<< HEAD
     'data' => \yii\helpers\ArrayHelper::map(
         \app\models\base\Siswa::find()
             ->select(["nis", "CONCAT(nis, ' - ', nama, ' - ', kode_kelas) AS nama"])
@@ -64,6 +65,35 @@ echo TabularForm::widget([
         //         ],
         //     ]
         // ],
+=======
+                'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Siswa::find()->orderBy('nis')->asArray()->all(), 'nis', 'nis'),
+                'options' => ['placeholder' => 'Choose Siswa'],
+            ],
+            'columnOptions' => ['width' => '200px']
+        ],
+        'nama' => ['type' => TabularForm::INPUT_TEXT],
+        'status' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+                    'items' => [ 'SAKIT' => 'SAKIT', 'IZIN' => 'IZIN', 'HADIR' => 'HADIR', 'ALPA' => 'ALPA', '-' => '-', '' => '', ],
+                    'options' => [
+                        'columnOptions' => ['width' => '185px'],
+                        'options' => ['placeholder' => 'Choose Status'],
+                    ]
+        ],
+        'waktu_presensi' => ['type' => TabularForm::INPUT_WIDGET,
+            'widgetClass' => \kartik\datecontrol\DateControl::classname(),
+            'options' => [
+                'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+                'saveFormat' => 'php:Y-m-d H:i:s',
+                'ajaxConversion' => true,
+                'options' => [
+                    'pluginOptions' => [
+                        'placeholder' => 'Choose Waktu Presensi',
+                        'autoclose' => true,
+                    ]
+                ],
+            ]
+        ],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         'del' => [
             'type' => 'raw',
             'label' => '',

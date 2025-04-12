@@ -24,7 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GhostHtml::a('Delete', ['/mapel/delete', 'id' => $model->kode_mapel], [
                 'class' => 'btn btn-danger',
                 'data' => [
+<<<<<<< HEAD
                     'confirm' => 'apakah anda ingin menghapus data ini?',
+=======
+                    'confirm' => 'Are you sure you want to delete this item?',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                     'method' => 'post',
                 ],
             ])
@@ -49,7 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\SerialColumn'],
                             'jurnal_id',
             [
+<<<<<<< HEAD
                 'attribute' => 'guru.nama',
+=======
+                'attribute' => 'guru.guru_id',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 'label' => 'Guru'
             ],
             [
@@ -57,7 +65,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Kodeta'
             ],
             [
+<<<<<<< HEAD
                 'attribute' => 'hari.nama',
+=======
+                'attribute' => 'hari.hari_id',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 'label' => 'Hari'
             ],
             'jam_ke',
@@ -68,9 +80,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
                         'jam_mulai',
             'jam_selesai',
+<<<<<<< HEAD
             // 'status',
             // 'waktupresensi',
             // 'file_siswa',
+=======
+            'status',
+            'waktupresensi',
+            'file_siswa',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 ];
                 echo Gridview::widget([
                 'dataProvider' => $providerJurnal,

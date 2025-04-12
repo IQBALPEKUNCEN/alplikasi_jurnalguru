@@ -35,8 +35,15 @@ class Jurnal extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
+<<<<<<< HEAD
 
     public function __construct(){
+=======
+    
+
+    public function __construct(){
+        
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -63,9 +70,17 @@ class Jurnal extends \yii\db\ActiveRecord
         return [
             [['hari_id', 'jam_ke'], 'integer'],
             [['materi', 'status'], 'string'],
+<<<<<<< HEAD
             [['jam_mulai', 'jam_selesai', 'waktupresensi','tanggal'], 'safe'],
             [['guru_id', 'kodeta', 'kode_kelas', 'kode_mapel'], 'string', 'max' => 20],
             [['file_siswa'], 'string', 'max' => 255],
+=======
+            [['jam_mulai', 'jam_selesai', 'waktupresensi'], 'safe'],
+            [['guru_id', 'kodeta', 'kode_kelas', 'kode_mapel'], 'string', 'max' => 20],
+            [['file_siswa'], 'string', 'max' => 255],
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -84,6 +99,12 @@ class Jurnal extends \yii\db\ActiveRecord
      * return string name of field are used to stored optimistic lock
      *
      */
+<<<<<<< HEAD
+=======
+    public function optimisticLock() {
+        return 'lock';
+    }
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
     /**
      * @inheritdoc
@@ -95,7 +116,10 @@ class Jurnal extends \yii\db\ActiveRecord
             'guru_id' => 'Guru ID',
             'kodeta' => 'Kodeta',
             'hari_id' => 'Hari ID',
+<<<<<<< HEAD
             'tanggal' => 'Tanggal',
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             'jam_ke' => 'Jam Ke',
             'materi' => 'Materi',
             'kode_kelas' => 'Kode Kelas',
@@ -111,6 +135,7 @@ class Jurnal extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+<<<<<<< HEAD
     // mengasumsikan nama ada di model guru 
     public function getNama()
     {
@@ -118,6 +143,8 @@ class Jurnal extends \yii\db\ActiveRecord
     }
 
 
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     public function getGuru()
     {
         return $this->hasOne(\app\models\Guru::className(), ['guru_id' => 'guru_id']);
@@ -126,7 +153,10 @@ class Jurnal extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     public function getHari()
     {
         return $this->hasOne(\app\models\Hari::className(), ['hari_id' => 'hari_id']);
@@ -143,6 +173,7 @@ class Jurnal extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+<<<<<<< HEAD
     public function getHariDariTanggal()
 {
     $hari = [
@@ -152,6 +183,8 @@ class Jurnal extends \yii\db\ActiveRecord
 }
 
 
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     public function getKodeMapel()
     {
         return $this->hasOne(\app\models\Mapel::className(), ['kode_mapel' => 'kode_mapel']);
@@ -180,6 +213,24 @@ class Jurnal extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+<<<<<<< HEAD
+=======
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+            'uuid' => [
+                'class' => UUIDBehavior::className(),
+                'column' => 'id',
+            ],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -212,8 +263,13 @@ class Jurnal extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\models\JurnalQuery(get_called_class());
+<<<<<<< HEAD
         
     }
 
     
+=======
+       
+    }
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 }

@@ -19,6 +19,11 @@ class Jenjang extends BaseJenjang
 	    [
             [['kode_jenjang'], 'required'],
             [['kode_jenjang', 'nama'], 'string', 'max' => 20],
+<<<<<<< HEAD
+=======
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ]);
     }
 	

@@ -46,7 +46,11 @@ class JenjangController extends Controller
 
     /**
      * Displays a single Jenjang model.
+<<<<<<< HEAD
      * @param string $id
+=======
+     * 
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
      * @return mixed
      */
     public function actionView($id)
@@ -73,7 +77,11 @@ class JenjangController extends Controller
         if ($this->request->isPost) {
             if ($model->loadAll($this->request->post()) && $model->saveAll()) {
                 Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
+<<<<<<< HEAD
                 return $this->redirect(['view', 'id' => $model->kode_jenjang]);
+=======
+                return $this->redirect(['view', ]);
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             }
         } else {
             $model->loadDefaultValues();
@@ -87,7 +95,11 @@ class JenjangController extends Controller
     /**
      * Updates an existing Jenjang model.
      * If update is successful, the browser will be redirected to the 'view' page.
+<<<<<<< HEAD
      * @param string $id
+=======
+     * 
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
      * @return mixed
      */
     public function actionUpdate($id)
@@ -97,7 +109,11 @@ class JenjangController extends Controller
         if ($this->request->isPost) {
             if ($model->loadAll($this->request->post()) && $model->saveAll()) {
                 Yii::$app->session->setFlash('success', "Data berhasil diupdate");
+<<<<<<< HEAD
                 return $this->redirect(['view', 'id' => $model->kode_jenjang]);
+=======
+                return $this->redirect(['view', ]);
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             }
         }
 
@@ -109,12 +125,20 @@ class JenjangController extends Controller
     /**
      * Deletes an existing Jenjang model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+<<<<<<< HEAD
      * @param string $id
+=======
+     * 
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
      * @return mixed
      */
     public function actionDelete($id)
     {
+<<<<<<< HEAD
         // $this->findModel($id)->deleteWithRelated();
+=======
+        // $this->findModel($)->deleteWithRelated();
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         $result = $this->findModel($id)->delete();
 
         if ($result) {
@@ -130,13 +154,21 @@ class JenjangController extends Controller
     /**
      * Finds the Jenjang model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+<<<<<<< HEAD
      * @param string $id
+=======
+     * 
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
      * @return Jenjang the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
+<<<<<<< HEAD
         if (($model = Jenjang::findOne($id)) !== null) {
+=======
+        if (($model = Jenjang::findOne([])) !== null) {
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             return $model;
         } else {
             throw new NotFoundHttpException('Data tidak ditemukan.');

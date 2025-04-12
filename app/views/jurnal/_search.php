@@ -19,7 +19,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'guru_id')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Guru::find()->orderBy('guru_id')->asArray()->all(), 'guru_id', 'guru_id'),
+<<<<<<< HEAD
         'options' => ['placeholder' => 'Pilih Guru'],
+=======
+        'options' => ['placeholder' => 'Choose Guru'],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         'pluginOptions' => [
             'allowClear' => true
         ],
@@ -41,6 +45,7 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
+<<<<<<< HEAD
     <!-- <?php $form->field($model, 'tanggal')->widget(\kartik\widgets\DatePicker::classname(), [
     'options' => ['placeholder' => 'Pilih Tanggal'],
     'pluginOptions' => [
@@ -50,6 +55,8 @@ use yii\widgets\ActiveForm;
     ]
 ]); ?> -->
 
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     <?= $form->field($model, 'jam_ke')->textInput(['placeholder' => 'Jam Ke']) ?>
 
     <?php /* echo $form->field($model, 'materi')->textarea(['rows' => 6]) */ ?>

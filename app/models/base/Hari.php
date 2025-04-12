@@ -19,10 +19,15 @@ class Hari extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
+<<<<<<< HEAD
     
 
     public function __construct(){
       
+=======
+
+    public function __construct(){
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -43,9 +48,14 @@ class Hari extends \yii\db\ActiveRecord
     {
         return [
             [['nama'], 'string', 'max' => 20],
+<<<<<<< HEAD
             [['no_urut'], 'integer'],
        
            
+=======
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -64,6 +74,12 @@ class Hari extends \yii\db\ActiveRecord
      * return string name of field are used to stored optimistic lock
      *
      */
+<<<<<<< HEAD
+=======
+    public function optimisticLock() {
+        return 'lock';
+    }
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
     /**
      * @inheritdoc
@@ -81,7 +97,11 @@ class Hari extends \yii\db\ActiveRecord
      */
     public function getJurnals()
     {
+<<<<<<< HEAD
         // return $this->hasMany(\app\models\Jurnal::className(), ['hari_id' => 'hari_id']);
+=======
+        return $this->hasMany(\app\models\Jurnal::className(), ['hari_id' => 'hari_id']);
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
     
     /**
@@ -90,7 +110,27 @@ class Hari extends \yii\db\ActiveRecord
      */
     public function behaviors()
     {
+<<<<<<< HEAD
         return [];
+=======
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+            'uuid' => [
+                'class' => UUIDBehavior::className(),
+                'column' => 'id',
+            ],
+        ];
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**

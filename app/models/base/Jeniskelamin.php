@@ -21,6 +21,10 @@ class Jeniskelamin extends \yii\db\ActiveRecord
 
 
     public function __construct(){
+<<<<<<< HEAD
+=======
+        
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -30,7 +34,11 @@ class Jeniskelamin extends \yii\db\ActiveRecord
     public function relationNames()
     {
         return [
+<<<<<<< HEAD
             'guru'
+=======
+            'gurus'
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -43,6 +51,11 @@ class Jeniskelamin extends \yii\db\ActiveRecord
             [['kode_jk'], 'required'],
             [['kode_jk'], 'string', 'max' => 1],
             [['nama'], 'string', 'max' => 20],
+<<<<<<< HEAD
+=======
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -61,7 +74,13 @@ class Jeniskelamin extends \yii\db\ActiveRecord
      * return string name of field are used to stored optimistic lock
      *
      */
+<<<<<<< HEAD
     
+=======
+    public function optimisticLock() {
+        return 'lock';
+    }
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
     /**
      * @inheritdoc
@@ -88,7 +107,27 @@ class Jeniskelamin extends \yii\db\ActiveRecord
      */
     public function behaviors()
     {
+<<<<<<< HEAD
         return [];
+=======
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+            'uuid' => [
+                'class' => UUIDBehavior::className(),
+                'column' => 'id',
+            ],
+        ];
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -120,5 +159,9 @@ class Jeniskelamin extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\models\JeniskelaminQuery(get_called_class());
+<<<<<<< HEAD
+=======
+    
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 }

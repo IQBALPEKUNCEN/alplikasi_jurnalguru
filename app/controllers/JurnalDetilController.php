@@ -2,7 +2,10 @@
 
 namespace app\controllers;
 
+<<<<<<< HEAD
 use app\models\base\Jurnal;
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 use Yii;
 use app\models\base\JurnalDetil;
 use app\models\JurnalDetilSearch;
@@ -63,6 +66,7 @@ class JurnalDetilController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+<<<<<<< HEAD
     // public function actionCreate()
     // {
     //     $model = new JurnalDetil();
@@ -93,11 +97,27 @@ class JurnalDetilController extends Controller
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->detil_id]);
             }
+=======
+    public function actionCreate()
+    {
+        $model = new JurnalDetil();
+
+        if ($this->request->isPost) {
+            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
+                Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
+                return $this->redirect(['view', 'id' => $model->detil_id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         }
 
         return $this->render('create', [
             'model' => $model,
+<<<<<<< HEAD
             'jurnal_id' => $jurnal_id,
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ]);
     }
 

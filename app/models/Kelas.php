@@ -19,6 +19,11 @@ class Kelas extends BaseKelas
 	    [
             [['kode_kelas'], 'required'],
             [['kode_kelas', 'kode_jenjang', 'kode_jurusan', 'nama'], 'string', 'max' => 20],
+<<<<<<< HEAD
+=======
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ]);
     }
 	

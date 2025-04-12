@@ -22,8 +22,17 @@ use mootensai\behaviors\UUIDBehavior;
  */
 class Kelas extends \yii\db\ActiveRecord
 {
+<<<<<<< HEAD
     use \mootensai\relation\RelationTrait;    
     public function __construct(){
+=======
+    use \mootensai\relation\RelationTrait;
+
+   
+
+    public function __construct(){
+       
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -48,6 +57,11 @@ class Kelas extends \yii\db\ActiveRecord
         return [
             [['kode_kelas'], 'required'],
             [['kode_kelas', 'kode_jenjang', 'kode_jurusan', 'nama'], 'string', 'max' => 20],
+<<<<<<< HEAD
+=======
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -66,6 +80,12 @@ class Kelas extends \yii\db\ActiveRecord
      * return string name of field are used to stored optimistic lock
      *
      */
+<<<<<<< HEAD
+=======
+    public function optimisticLock() {
+        return 'lock';
+    }
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
     /**
      * @inheritdoc
@@ -83,12 +103,15 @@ class Kelas extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+<<<<<<< HEAD
     public function getKodeJurusan()
     {
         return $this->hasOne(Jurusan::class, ['kode_jurusan' => 'kode_jurusan']);
     }
     
 
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     public function getHistorykelas()
     {
         return $this->hasMany(\app\models\Historykelas::className(), ['kode_kelas' => 'kode_kelas']);
@@ -113,10 +136,17 @@ class Kelas extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+<<<<<<< HEAD
     // public function getKodeJurusan()
     // {
     //     return $this->hasOne(\app\models\Jurusan::className(), ['kode_jurusan' => 'kode_jurusan']);
     // }
+=======
+    public function getKodeJurusan()
+    {
+        return $this->hasOne(\app\models\Jurusan::className(), ['kode_jurusan' => 'kode_jurusan']);
+    }
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     
     /**
      * @inheritdoc
@@ -124,7 +154,27 @@ class Kelas extends \yii\db\ActiveRecord
      */
     public function behaviors()
     {
+<<<<<<< HEAD
         return [];
+=======
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+            'uuid' => [
+                'class' => UUIDBehavior::className(),
+                'column' => 'id',
+            ],
+        ];
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -155,6 +205,11 @@ class Kelas extends \yii\db\ActiveRecord
      */
     public static function find()
     {
+<<<<<<< HEAD
        return new \app\models\KelasQuery(get_called_class());
+=======
+        return new \app\models\KelasQuery(get_called_class());
+        
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 }

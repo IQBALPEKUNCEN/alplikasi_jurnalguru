@@ -10,7 +10,11 @@ use app\models\base\Jurnal;
 /**
  * app\models\JurnalSearch represents the model behind the search form about `app\models\base\Jurnal`.
  */
+<<<<<<< HEAD
 class JurnalSearch extends Jurnal
+=======
+ class JurnalSearch extends Jurnal
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 {
     /**
      * @inheritdoc
@@ -19,7 +23,11 @@ class JurnalSearch extends Jurnal
     {
         return [
             [['jurnal_id', 'hari_id', 'jam_ke'], 'integer'],
+<<<<<<< HEAD
             [['guru_id', 'kodeta', 'materi', 'kode_kelas', 'kode_mapel', 'jam_mulai', 'jam_selesai', 'status', 'waktupresensi', 'file_siswa', 'tanggal'], 'safe'],
+=======
+            [['guru_id', 'kodeta', 'materi', 'kode_kelas', 'kode_mapel', 'jam_mulai', 'jam_selesai', 'status', 'waktupresensi', 'file_siswa'], 'safe'],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ];
     }
 
@@ -50,7 +58,11 @@ class JurnalSearch extends Jurnal
         $this->load($params);
 
         if (!$this->validate()) {
+<<<<<<< HEAD
             // Uncomment the following line if you do not want to return any records when validation fails
+=======
+            // uncomment the following line if you do not want to return any records when validation fails
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             // $query->where('0=1');
             return $dataProvider;
         }
@@ -72,11 +84,14 @@ class JurnalSearch extends Jurnal
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'file_siswa', $this->file_siswa]);
 
+<<<<<<< HEAD
         // Filter berdasarkan tanggal
         if ($this->tanggal) {
             $query->andFilterWhere(['DATE(tanggal)' => date('Y-m-d', strtotime($this->tanggal))]);
         }
 
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         return $dataProvider;
     }
 }

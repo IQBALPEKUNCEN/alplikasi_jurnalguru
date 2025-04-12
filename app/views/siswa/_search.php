@@ -21,6 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'kode_kelas')->textInput(['maxlength' => true, 'placeholder' => 'Kode Kelas']) ?>
 
+<<<<<<< HEAD
     <?= $form->field($model, 'kode_jk')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Jeniskelamin::find()->orderBy('kode_jk')->asArray()->all(), 'kode_jk', 'kode_jk'),
         'options' => ['placeholder' => 'Choose Jeniskelamin'],
@@ -28,6 +29,9 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
+=======
+    <?= $form->field($model, 'kode_jk')->textInput(['maxlength' => true, 'placeholder' => 'Kode Jk']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
     <?= $form->field($model, 'tempat_lahir')->textInput(['maxlength' => true, 'placeholder' => 'Tempat Lahir']) ?>
 

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+<<<<<<< HEAD
 use app\models\base\Guru;
 use app\models\base\Hari;
 use app\models\base\Jenjang;
@@ -12,6 +13,11 @@ use app\models\base\Mapel;
 use app\models\JurnalSearch;
 use app\models\Laporan;
 use yii\base\DynamicModel;
+=======
+use Yii;
+use app\models\base\Jurnal;
+use app\models\JurnalSearch;
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -78,6 +84,7 @@ class JurnalController extends Controller
         $model = new Jurnal();
 
         if ($this->request->isPost) {
+<<<<<<< HEAD
            
             if ($model->loadAll($this->request->post()) ) {
                 //var_dump($model->tanggal);
@@ -96,6 +103,10 @@ class JurnalController extends Controller
                 $model->saveAll();
                 Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
                
+=======
+            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
+                Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 return $this->redirect(['view', 'id' => $model->jurnal_id]);
             }
         } else {
@@ -105,7 +116,10 @@ class JurnalController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
+<<<<<<< HEAD
        
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -119,15 +133,22 @@ class JurnalController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost) {
+<<<<<<< HEAD
             $model->waktupresensi = date("Y-m-d H:i:s");
             $model->status = "HADIR";
 
+=======
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             if ($model->loadAll($this->request->post()) && $model->saveAll()) {
                 Yii::$app->session->setFlash('success', "Data berhasil diupdate");
                 return $this->redirect(['view', 'id' => $model->jurnal_id]);
             }
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         return $this->render('update', [
             'model' => $model,
         ]);
@@ -153,6 +174,7 @@ class JurnalController extends Controller
         return $this->redirect(['index']);
     }
 
+<<<<<<< HEAD
    
    
 //     public function actionLaporan()
@@ -363,6 +385,24 @@ protected function findModel($id)
     
     
 
+=======
+    
+    /**
+     * Finds the Jurnal model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Jurnal the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Jurnal::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('Data tidak ditemukan.');
+        }
+    }
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     
     /**
     * Action to load a tabular form grid

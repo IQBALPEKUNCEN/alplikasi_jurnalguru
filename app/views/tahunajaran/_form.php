@@ -39,7 +39,11 @@ use kartik\form\ActiveForm;
 
     <?= $form->field($model, 'isaktif')->checkbox() ?>
 
+<<<<<<< HEAD
     <!-- <?php
+=======
+    <?php
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     $forms = [
         [
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Historykelas'),
@@ -64,10 +68,17 @@ use kartik\form\ActiveForm;
             'enableCache' => false,
         ],
     ]);
+<<<<<<< HEAD
     ?> -->
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Tambah' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Batal'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
+=======
+    ?>
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     </div>
 
     <?php ActiveForm::end(); ?>

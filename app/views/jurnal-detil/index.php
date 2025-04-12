@@ -29,7 +29,11 @@ $this->registerJs($search);
         <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
+<<<<<<< HEAD
                 // 'detil_id',
+=======
+                'detil_id',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             [
                 'attribute' => 'jurnal_id',
                 'label' => 'Jurnal',
@@ -53,12 +57,17 @@ $this->registerJs($search);
                     {return NULL;}
                 },
                 'filterType' => GridView::FILTER_SELECT2,
+<<<<<<< HEAD
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\base\Siswa::find()->asArray()->all(), 'nis', 'nama'),
+=======
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\base\Siswa::find()->asArray()->all(), 'nis', 'nis'),
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
                 'filterInputOptions' => ['placeholder' => 'Siswa', 'id' => 'grid-jurnal-detil-search-nis']
             ],
+<<<<<<< HEAD
             [
                 'attribute' => 'nama',
                 'label' => 'Nama',
@@ -72,6 +81,9 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Nama', 'id' => 'grid-jurnal-detil-search-nama']
             ],
+=======
+            'nama',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             'status',
             'waktu_presensi',
             [
@@ -88,7 +100,11 @@ $this->registerJs($search);
     <div class="d-flex justify-content-between mb-4">
         <div>
             <?= GhostHtml::a('<span class=\'glyphicon glyphicon-plus-sign\'></span> Tambah', ['/jurnal-detil/create'], ['class' => 'btn btn-success']) ?>
+<<<<<<< HEAD
             <!-- <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?> -->
+=======
+            <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             </div>
             <?= ExportMenu::widget([
                 'dataProvider' => $dataProvider,

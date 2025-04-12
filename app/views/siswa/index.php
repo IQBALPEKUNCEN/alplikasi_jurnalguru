@@ -32,6 +32,7 @@ $this->registerJs($search);
                 'nis',
             'nama',
             'kode_kelas',
+<<<<<<< HEAD
             [
                 'attribute' => 'kode_jk',
                 'label' => 'Jenis Kelamin',
@@ -45,6 +46,9 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Pilih Jenis Kelamin', 'id' => 'grid-siswa-search-kode_jk']
             ],
+=======
+            'kode_jk',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             'tempat_lahir',
             'tanggal_lahir',
             'no_hp',
@@ -63,7 +67,11 @@ $this->registerJs($search);
     <div class="d-flex justify-content-between mb-4">
         <div>
             <?= GhostHtml::a('<span class=\'glyphicon glyphicon-plus-sign\'></span> Tambah', ['/siswa/create'], ['class' => 'btn btn-success']) ?>
+<<<<<<< HEAD
             <!-- <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?> -->
+=======
+            <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             </div>
             <?= ExportMenu::widget([
                 'dataProvider' => $dataProvider,

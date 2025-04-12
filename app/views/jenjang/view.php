@@ -20,11 +20,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                     
             <?= GhostHtml::a('Baru', ['/jenjang/create'], ['class' => 'btn btn-success']) ?>
             <?= GhostHtml::a('List', ['/jenjang/index'], ['class' => 'btn btn-info']) ?>
+<<<<<<< HEAD
             <?= GhostHtml::a('Update', ['/jenjang/update', 'id' => $model->kode_jenjang], ['class' => 'btn btn-primary']) ?>
             <?= GhostHtml::a('Delete', ['/jenjang/delete', 'id' => $model->kode_jenjang], [
                 'class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => 'Apakah anda ingin menghapus ini?',
+=======
+            <?= GhostHtml::a('Update', ['/jenjang/update', ], ['class' => 'btn btn-primary']) ?>
+            <?= GhostHtml::a('Delete', ['/jenjang/delete', ], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                     'method' => 'post',
                 ],
             ])

@@ -6,6 +6,7 @@ $this->title = 'SMK MUHAMMADIYAH 2 AJIBARANG';
 ?>
 <div class="site-index">
 
+<<<<<<< HEAD
     <!-- <div class="jumbotron text-center bg-transparent mt-5 mb-5">
         <h1 class="display-4">Jurnal Guru</h1>
         <p class="lead">SD NEGERI 1 PEKUNCEN.</p>
@@ -39,6 +40,14 @@ $this->title = 'SMK MUHAMMADIYAH 2 AJIBARANG';
                 <span class="sr-only">Next</span>
             </a>
         </div>
+=======
+    <div class="jumbotron text-center bg-transparent mt-5 mb-5">
+        <h1 class="display-4">Jurnal Guru</h1>
+
+        <p class="lead">SD Negeri Pekuncen.</p>
+
+        <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     </div>
 
     <!-- Content Below Carousel -->

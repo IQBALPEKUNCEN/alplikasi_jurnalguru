@@ -33,6 +33,7 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
+<<<<<<< HEAD
 <?= $form->field($model, 'nama')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Siswa::find()->orderBy('nama')->asArray()->all(), 'nama', 'nama'),
         'options' => ['placeholder' => 'Choose Siswa'],
@@ -40,6 +41,9 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ]); ?>
+=======
+    <?= $form->field($model, 'nama')->textInput(['maxlength' => true, 'placeholder' => 'Nama']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
     <?= $form->field($model, 'status')->dropDownList([ 'SAKIT' => 'SAKIT', 'IZIN' => 'IZIN', 'HADIR' => 'HADIR', 'ALPA' => 'ALPA', '-' => '-', '' => '', ], ['prompt' => '']) ?>
 

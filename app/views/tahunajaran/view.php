@@ -9,7 +9,11 @@ use app\modules\UserManagement\components\GhostHtml;
 /* @var $model app\models\base\Tahunajaran */
 
 $this->title = $model->kodeta;
+<<<<<<< HEAD
 $this->params['breadcrumbs'][] = ['label' => 'Tahun ajaran', 'url' => ['index']];
+=======
+$this->params['breadcrumbs'][] = ['label' => 'Tahunajaran', 'url' => ['index']];
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tahunajaran-view">
@@ -24,7 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GhostHtml::a('Delete', ['/tahunajaran/delete', 'id' => $model->kodeta], [
                 'class' => 'btn btn-danger',
                 'data' => [
+<<<<<<< HEAD
                     'confirm' => 'Apakah anda ingin menghapus data ini?',
+=======
+                    'confirm' => 'Are you sure you want to delete this item?',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                     'method' => 'post',
                 ],
             ])

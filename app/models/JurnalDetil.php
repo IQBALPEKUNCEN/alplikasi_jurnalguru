@@ -23,6 +23,11 @@ class JurnalDetil extends BaseJurnalDetil
             [['waktu_presensi'], 'safe'],
             [['nis'], 'string', 'max' => 20],
             [['nama'], 'string', 'max' => 255],
+<<<<<<< HEAD
+=======
+            [['lock'], 'default', 'value' => '0'],
+            [['lock'], 'mootensai\components\OptimisticLockValidator']
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ]);
     }
 	

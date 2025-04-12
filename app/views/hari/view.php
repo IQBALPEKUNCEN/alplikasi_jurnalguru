@@ -8,13 +8,21 @@ use app\modules\UserManagement\components\GhostHtml;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Hari */
 
+<<<<<<< HEAD
 $this->title = $model->nama;
+=======
+$this->title = $model->hari_id;
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 $this->params['breadcrumbs'][] = ['label' => 'Hari', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="hari-view">
     <div class="d-flex justify-content-between mt-4 mb-2">
+<<<<<<< HEAD
         <h2><?= 'Hari:'  . Html::encode($this->title) ?></h2>
+=======
+        <h2><?= 'Hari'  . Html::encode($this->title) ?></h2>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
         <div>
                                     
@@ -24,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GhostHtml::a('Delete', ['/hari/delete', 'id' => $model->hari_id], [
                 'class' => 'btn btn-danger',
                 'data' => [
+<<<<<<< HEAD
                     'confirm' => 'Apakah anda ingin menghapus data ini?',
+=======
+                    'confirm' => 'Are you sure you want to delete this item?',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                     'method' => 'post',
                 ],
             ])

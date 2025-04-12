@@ -8,13 +8,21 @@ use app\modules\UserManagement\components\GhostHtml;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Siswa */
 
+<<<<<<< HEAD
 $this->title = $model->nama;
+=======
+$this->title = $model->nis;
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 $this->params['breadcrumbs'][] = ['label' => 'Siswa', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="siswa-view">
     <div class="d-flex justify-content-between mt-4 mb-2">
+<<<<<<< HEAD
         <h2><?= ''  . Html::encode($this->title) ?></h2>
+=======
+        <h2><?= 'Siswa'  . Html::encode($this->title) ?></h2>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
         <div>
                                     
@@ -24,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GhostHtml::a('Delete', ['/siswa/delete', 'id' => $model->nis], [
                 'class' => 'btn btn-danger',
                 'data' => [
+<<<<<<< HEAD
                     'confirm' => 'Apakah anda ingin menghapus data ini?',
+=======
+                    'confirm' => 'Are you sure you want to delete this item?',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                     'method' => 'post',
                 ],
             ])
@@ -37,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'nis',
         'nama',
         'kode_kelas',
+<<<<<<< HEAD
         [
             'attribute' => 'kode_jk',
             'label' => 'Jenis kelamin',
@@ -44,6 +57,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 return $model->kode_jk == 'L' ? 'Laki-laki' : 'Perempuan';
             },
         ],
+=======
+        'kode_jk',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         'tempat_lahir',
         'tanggal_lahir',
         'no_hp',

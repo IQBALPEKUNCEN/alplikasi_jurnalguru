@@ -8,13 +8,21 @@ use app\modules\UserManagement\components\GhostHtml;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Guru */
 
+<<<<<<< HEAD
 $this->title = $model->nama;
+=======
+$this->title = $model->guru_id;
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 $this->params['breadcrumbs'][] = ['label' => 'Guru', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="guru-view">
     <div class="d-flex justify-content-between mt-4 mb-2">
+<<<<<<< HEAD
         <h2><?= 'Guru:'  . Html::encode($this->title) ?></h2>
+=======
+        <h2><?= 'Guru'  . Html::encode($this->title) ?></h2>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 
         <div>
                                     
@@ -24,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GhostHtml::a('Delete', ['/guru/delete', 'id' => $model->guru_id], [
                 'class' => 'btn btn-danger',
                 'data' => [
+<<<<<<< HEAD
                     'confirm' => 'apakah anda ingin menghapus ini?',
+=======
+                    'confirm' => 'Are you sure you want to delete this item?',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                     'method' => 'post',
                 ],
             ])
@@ -37,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'guru_id',
         'nama',
         [
+<<<<<<< HEAD
             'attribute' => 'kode_jk',
             'label' => 'Kode Jk',
             'value' => function($model){
@@ -51,6 +64,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'pluginOptions' => ['allowClear' => true],
             ],
             'filterInputOptions' => ['placeholder' => 'Jeniskelamin', 'id' => 'grid-guru-search-kode_jk']
+=======
+            'attribute' => 'kodeJk.kode_jk',
+            'label' => 'Kode Jk',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ],
         'nip',
         'nik',
@@ -71,7 +88,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'nama',
             ];
             echo DetailView::widget([
+<<<<<<< HEAD
             'model' => $model->nama,
+=======
+            'model' => $model->kodeJk,
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             'attributes' => $gridColumnJeniskelamin            ]);
             ?>
                                     <?php
@@ -84,7 +105,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Kodeta'
             ],
             [
+<<<<<<< HEAD
                 'attribute' => 'hari.nama',
+=======
+                'attribute' => 'hari.hari_id',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 'label' => 'Hari'
             ],
             'jam_ke',
@@ -99,9 +124,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'jam_mulai',
             'jam_selesai',
+<<<<<<< HEAD
             // 'status',
             // 'waktupresensi',
             // 'file_siswa',
+=======
+            'status',
+            'waktupresensi',
+            'file_siswa',
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 ];
                 echo Gridview::widget([
                 'dataProvider' => $providerJurnal,

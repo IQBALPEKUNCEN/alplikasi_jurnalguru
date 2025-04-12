@@ -71,11 +71,15 @@ class HariController extends Controller
         $model = new Hari();
 
         if ($this->request->isPost) {
+<<<<<<< HEAD
             // if ($model->loadAll($this->request->post()) && $model->saveAll()) {
             //     Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
             //     return $this->redirect(['view', 'id' => $model->hari_id]);
             // }
             if ($model->load($this->request->post()) && $model->save()) {
+=======
+            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
                 return $this->redirect(['view', 'id' => $model->hari_id]);
             }

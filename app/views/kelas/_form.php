@@ -35,12 +35,17 @@ use kartik\form\ActiveForm;
 
     <?= $form->field($model, 'kode_jenjang')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Jenjang::find()->orderBy('kode_jenjang')->asArray()->all(), 'kode_jenjang', 'kode_jenjang'),
+<<<<<<< HEAD
         'options' => ['placeholder' => 'Tambah Jenjang'],
+=======
+        'options' => ['placeholder' => 'Choose Jenjang'],
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         'pluginOptions' => [
             'allowClear' => true
         ],
     ]); ?>
 
+<<<<<<< HEAD
     <!-- <?= $form->field($model, 'kode_jurusan')->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Jurusan::find()->orderBy('kode_jurusan')->asArray()->all(), 'kode_jurusan', 'kode_jurusan'),
         'options' => ['placeholder' => 'Tambah Jurusan'],
@@ -52,6 +57,19 @@ use kartik\form\ActiveForm;
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true, 'placeholder' => 'Nama']) ?>
 
     <!-- <?php
+=======
+    <?= $form->field($model, 'kode_jurusan')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Jurusan::find()->orderBy('kode_jurusan')->asArray()->all(), 'kode_jurusan', 'kode_jurusan'),
+        'options' => ['placeholder' => 'Choose Jurusan'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+
+    <?= $form->field($model, 'nama')->textInput(['maxlength' => true, 'placeholder' => 'Nama']) ?>
+
+    <?php
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     $forms = [
         [
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Historykelas'),
@@ -76,10 +94,17 @@ use kartik\form\ActiveForm;
             'enableCache' => false,
         ],
     ]);
+<<<<<<< HEAD
     ?> -->
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Tambah' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Batal'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
+=======
+    ?>
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     </div>
 
     <?php ActiveForm::end(); ?>

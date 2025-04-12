@@ -23,9 +23,16 @@ class Historykelas extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
+<<<<<<< HEAD
    
 
     public function __construct(){
+=======
+    
+
+    public function __construct(){
+       
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 
     /**
@@ -163,5 +170,9 @@ class Historykelas extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\models\HistorykelasQuery(get_called_class());
+<<<<<<< HEAD
+=======
+        
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 }

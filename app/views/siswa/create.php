@@ -6,7 +6,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Siswa */
 
+<<<<<<< HEAD
 $this->title = 'Tambahkan Siswa';
+=======
+$this->title = 'Create Siswa';
+>>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 $this->params['breadcrumbs'][] = ['label' => 'Siswa', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
