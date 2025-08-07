@@ -5,7 +5,7 @@ namespace app\models\base;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
-use mootensai\behaviors\UUIDBehavior;
+use yii\data\ActiveDataProvider;
 
 /**
  * This is the base model class for table "jurusan".
@@ -17,28 +17,12 @@ use mootensai\behaviors\UUIDBehavior;
  */
 class Jurusan extends \yii\db\ActiveRecord
 {
-    use \mootensai\relation\RelationTrait;
-
-<<<<<<< HEAD
-
-    public function __construct(){
-=======
-    
-
-    public function __construct(){
-        
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
-    }
-
     /**
-    * This function helps \mootensai\relation\RelationTrait runs faster
-    * @return array relation names of this model
-    */
-    public function relationNames()
+     * @inheritdoc
+     */
+    public function __construct($config = [])
     {
-        return [
-            'kelas'
-        ];
+        parent::__construct($config);
     }
 
     /**
@@ -47,13 +31,10 @@ class Jurusan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kode_jurusan'], 'required'],
-            [['kode_jurusan', 'nama'], 'string', 'max' => 20],
-<<<<<<< HEAD
-=======
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+            [['kode_jurusan', 'nama'], 'required', 'message' => '{attribute} tidak boleh kosong'],
+            [['kode_jurusan'], 'string', 'max' => 20],
+            [['nama'], 'string', 'max' => 100],
+            [['kode_jurusan'], 'unique', 'message' => 'Kode jurusan sudah digunakan']
         ];
     }
 
@@ -66,30 +47,16 @@ class Jurusan extends \yii\db\ActiveRecord
     }
 
     /**
-     *
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock
-     *
-     */
-<<<<<<< HEAD
-=======
-    public function optimisticLock() {
-        return 'lock';
-    }
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
-
-    /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
             'kode_jurusan' => 'Kode Jurusan',
-            'nama' => 'Nama',
+            'nama' => 'Nama Jurusan'
         ];
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -97,69 +64,126 @@ class Jurusan extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\Kelas::className(), ['kode_jurusan' => 'kode_jurusan']);
     }
-    
+    public function getJurnalDetils()
+    {
+        return $this->hasMany(JurnalDetil::class, ['jurnal_id' => 'jurnal_id']);
+    }
+
+
     /**
      * @inheritdoc
-     * @return array mixed
      */
     public function behaviors()
     {
-<<<<<<< HEAD
-        return [];
-=======
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-            'uuid' => [
-                'class' => UUIDBehavior::className(),
-                'column' => 'id',
-            ],
-        ];
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+        $behaviors = [];
+
+        // Timestamp behavior
+        if (class_exists(TimestampBehavior::class)) {
+            $behaviors['timestamp'] = [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => false,
+                'updatedAtAttribute' => false,
+            ];
+        }
+
+        // Blameable behavior
+        if (class_exists(BlameableBehavior::class)) {
+            $behaviors['blameable'] = [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => false,
+                'updatedByAttribute' => false,
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**
-     * The following code shows how to apply a default condition for all queries:
+     * Creates data provider instance with search query applied
      *
-     * ```php
-     * class Customer extends ActiveRecord
-     * {
-     *     public static function find()
-     *     {
-     *         return parent::find()->where(['deleted' => false]);
-     *     }
-     * }
+     * @param array $params
      *
-     * // Use andWhere()/orWhere() to apply the default condition
-     * // SELECT FROM customer WHERE `deleted`=:deleted AND age>30
-     * $customers = Customer::find()->andWhere('age>30')->all();
-     *
-     * // Use where() to ignore the default condition
-     * // SELECT FROM customer WHERE age>30
-     * $customers = Customer::find()->where('age>30')->all();
-     * ```
+     * @return ActiveDataProvider
      */
+    public function search($params)
+    {
+        $query = self::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'kode_jurusan' => SORT_ASC,
+                ]
+            ]
+        ]);
+
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere(['like', 'kode_jurusan', $this->kode_jurusan])
+            ->andFilterWhere(['like', 'nama', $this->nama]);
+
+        return $dataProvider;
+    }
 
     /**
      * @inheritdoc
-     * @return \app\models\JurusanQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery
      */
     public static function find()
     {
-        return new \app\models\JurusanQuery(get_called_class());
-<<<<<<< HEAD
-=======
-        
-        
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+        return parent::find();
+    }
+
+    /**
+     * Validasi sebelum simpan
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        // Validasi tambahan bisa ditambahkan di sini
+        if (empty($this->nama)) {
+            $this->addError('nama', 'Nama Jurusan tidak boleh kosong');
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Proses setelah simpan
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        // Logging atau proses tambahan
+        Yii::info("Data jurusan {$this->kode_jurusan} telah " . ($insert ? 'ditambahkan' : 'diupdate'), 'application');
+    }
+
+    /**
+     * Override save untuk penanganan error yang lebih baik
+     */
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        try {
+            if (!parent::save($runValidation, $attributeNames)) {
+                Yii::error('Gagal menyimpan jurusan: ' . json_encode($this->errors), 'application');
+                return false;
+            }
+            return true;
+        } catch (\Exception $e) {
+            Yii::error('Exception saat menyimpan jurusan: ' . $e->getMessage(), 'application');
+            $this->addError('general', 'Terjadi kesalahan sistem');
+            return false;
+        }
     }
 }

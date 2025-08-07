@@ -6,11 +6,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Kelas */
 
-<<<<<<< HEAD
+
 $this->title = 'Tambahkan Kelas';
-=======
-$this->title = 'Create Kelas';
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
+
 $this->params['breadcrumbs'][] = ['label' => 'Kelas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

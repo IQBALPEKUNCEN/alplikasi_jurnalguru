@@ -18,11 +18,9 @@ class Historykelas extends BaseHistorykelas
         return array_replace_recursive(parent::rules(),
 	    [
             [['nis', 'kodeta', 'kode_kelas'], 'string', 'max' => 20],
-<<<<<<< HEAD
-=======
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+            // [['lock'], 'default', 'value' => '0'],
+            // [['lock'], 'mootensai\components\OptimisticLockValidator']
+
         ]);
     }
 	

@@ -7,270 +7,228 @@ use app\modules\UserManagement\components\GhostHtml;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Jurnal */
+/* @var $providerJurnalDetil yii\data\ActiveDataProvider */
 
-<<<<<<< HEAD
-$this->title = $model->nama;
-=======
-$this->title = $model->jurnal_id;
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+$this->title = 'Jurnal ID: ' . $model->jurnal_id;
 $this->params['breadcrumbs'][] = ['label' => 'Jurnal', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerCss(<<<CSS
+.jurnal-view {
+    background-color: #e3f2fd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.jurnal-view h2, .jurnal-view h3, .jurnal-view h4 {
+    color: #0d47a1;
+    font-weight: bold;
+}
+
+.panel-primary > .panel-heading {
+    background-color: #1976d2 !important;
+    color: #fff;
+    font-weight: bold;
+}
+
+.kv-grid-table th {
+    background-color: #bbdefb;
+    color: #0d47a1;
+}
+
+.kv-grid-table td {
+    background-color: #f1f8ff;
+}
+CSS);
 ?>
+
 <div class="jurnal-view">
     <div class="d-flex justify-content-between mt-4 mb-2">
-<<<<<<< HEAD
-        <h2><?= 'Jurnal: ' . Html::encode($this->title) ?></h2>
+        <h2><?= Html::encode($this->title) ?></h2>
 
         <div>
-=======
-        <h2><?= 'Jurnal'  . Html::encode($this->title) ?></h2>
-
-        <div>
-                                    
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
             <?= GhostHtml::a('Baru', ['/jurnal/create'], ['class' => 'btn btn-success']) ?>
             <?= GhostHtml::a('List', ['/jurnal/index'], ['class' => 'btn btn-info']) ?>
             <?= GhostHtml::a('Update', ['/jurnal/update', 'id' => $model->jurnal_id], ['class' => 'btn btn-primary']) ?>
             <?= GhostHtml::a('Delete', ['/jurnal/delete', 'id' => $model->jurnal_id], [
                 'class' => 'btn btn-danger',
                 'data' => [
-<<<<<<< HEAD
-                    'confirm' => 'Apakah anda ingin mengapus ini?',
+                    'confirm' => 'Apakah Anda yakin ingin menghapus data ini?',
                     'method' => 'post',
                 ],
             ]) ?>
-=======
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-            ])
-            ?>
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         </div>
     </div>
 
-    <?php 
-    $gridColumn = [
-<<<<<<< HEAD
-        'jurnal_id',
-        [
-            'attribute' => 'guru.nama',
-=======
-            'jurnal_id',
-        [
-            'attribute' => 'guru.guru_id',
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
-            'label' => 'Guru',
-        ],
-        [
-            'attribute' => 'kodeta0.kodeta',
-            'label' => 'Kodeta',
-        ],
-        [
-<<<<<<< HEAD
-            'attribute' => 'hari.nama',
-            'label' => 'Hari',
-        ],
-        'jam_ke',
-        [
-            'attribute' => 'tanggal',
-            'format' => ['date', 'php:d-m-Y'],
-            'label' => 'Tanggal Jurnal',
-        ],
-=======
-            'attribute' => 'hari.hari_id',
-            'label' => 'Hari',
-        ],
-        'jam_ke',
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
-        'materi:ntext',
-        [
-            'attribute' => 'kodeKelas.kode_kelas',
-            'label' => 'Kode Kelas',
-        ],
-        [
-            'attribute' => 'kodeMapel.kode_mapel',
-            'label' => 'Kode Mapel',
-        ],
-        'jam_mulai',
-        'jam_selesai',
-        'status',
-        'waktupresensi',
-<<<<<<< HEAD
-    ];
-
-    echo DetailView::widget([
+    <?= DetailView::widget([
         'model' => $model,
-        'attributes' => $gridColumn
-    ]);    
-    ?>
-
-    <br>
-    <h4>Kelas: <?= Html::encode($this->title) ?></h4>
-    <?php 
-    $gridColumnKelas = [
-        'kode_jenjang',
-        'nama',
-    ];
-    echo DetailView::widget([
-        'model' => $model->kodeKelas,
-        'attributes' => $gridColumnKelas
-    ]);
-    ?>
-    
-    <br>
-    <h4>Mapel: <?= Html::encode($this->title) ?></h4>
-    <?php 
-    $gridColumnMapel = [
-        'nama',
-    ];
-    echo DetailView::widget([
-        'model' => $model->kodeMapel,
-        'attributes' => $gridColumnMapel
-    ]);
-    ?>
-    
-    <br>
-    <h4>Tahunajaran: <?= Html::encode($this->title) ?></h4>
-    <?php 
-    $gridColumnTahunajaran = [
-        'semester',
-        'namata',
-        'isaktif',
-    ];
-    echo DetailView::widget([
-        'model' => $model->kodeta0,
-        'attributes' => $gridColumnTahunajaran
-    ]);
-    ?>
-
-    <?php
-    if ($providerJurnalDetil->totalCount) {
-        $gridColumnJurnalDetil = [
-            ['class' => 'yii\grid\SerialColumn'],
-            // 'detil_id',
+        'attributes' => [
+            'jurnal_id',
             [
-                'attribute' => 'nis0.nis',
-                'label' => 'Nis'
-            ],
-            'nis0.nama',
-            'status',
-            [
-                'attribute' => 'waktu_presensi',
-                'value' => function($model) {
-                    return $model->waktu_presensi ?: $model->jurnal->waktupresensi; // Ambil waktu presensi dari jurnal
+                'attribute' => 'guru.nama',
+                'label' => 'Guru',
+                'value' => function ($model) {
+                    return isset($model->guru) ? $model->guru->nama : 'Data tidak tersedia';
                 },
             ],
-            
-        ];
-        echo GridView::widget([
-            'dataProvider' => $providerJurnalDetil,
-            'pjax' => true,
-            'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-jurnal-detil']],
-            'panel' => [
-                'type' => GridView::TYPE_PRIMARY,
-                'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Jurnal Detil'),
+            [
+                'attribute' => 'kodeta0.kodeta',
+                'label' => 'Tahun Ajaran',
+                'value' => function ($model) {
+                    return isset($model->kodeta0) ? $model->kodeta0->kodeta : 'Data tidak tersedia';
+                },
             ],
-            'export' => false,
-            'columns' => $gridColumnJurnalDetil
-        ]);
-    }
-    ?>
-</div>
-=======
-        'file_siswa',
-    ];
-    echo DetailView::widget([
-    'model' => $model,
-    'attributes' => $gridColumn
-    ]);
-    ?>
-    <br>
-                        <br>
-            <h4>Guru<?= ' '. Html::encode($this->title) ?></h4>
-            <?php 
-            $gridColumnGuru = [
-                    'nama',
-        'kode_jk',
-        'nip',
-        'nik',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'alamat',
-            ];
-            echo DetailView::widget([
-            'model' => $model->guru,
-            'attributes' => $gridColumnGuru            ]);
-            ?>
-                                <br>
-            <h4>Hari<?= ' '. Html::encode($this->title) ?></h4>
-            <?php 
-            $gridColumnHari = [
-                    'nama',
-            ];
-            echo DetailView::widget([
-            'model' => $model->hari,
-            'attributes' => $gridColumnHari            ]);
-            ?>
-                                <br>
-            <h4>Kelas<?= ' '. Html::encode($this->title) ?></h4>
-            <?php 
-            $gridColumnKelas = [
-                    'kode_jenjang',
-        'kode_jurusan',
-        'nama',
-            ];
-            echo DetailView::widget([
-            'model' => $model->kodeKelas,
-            'attributes' => $gridColumnKelas            ]);
-            ?>
-                                <br>
-            <h4>Mapel<?= ' '. Html::encode($this->title) ?></h4>
-            <?php 
-            $gridColumnMapel = [
-                    'nama',
-            ];
-            echo DetailView::widget([
-            'model' => $model->kodeMapel,
-            'attributes' => $gridColumnMapel            ]);
-            ?>
-                                <br>
-            <h4>Tahunajaran<?= ' '. Html::encode($this->title) ?></h4>
-            <?php 
-            $gridColumnTahunajaran = [
-                    'semester',
-        'namata',
-        'isaktif',
-            ];
-            echo DetailView::widget([
-            'model' => $model->kodeta0,
-            'attributes' => $gridColumnTahunajaran            ]);
-            ?>
-                                    <?php
-                if($providerJurnalDetil->totalCount){
-                $gridColumnJurnalDetil = [
-                ['class' => 'yii\grid\SerialColumn'],
-                            'detil_id',
-                        [
-                'attribute' => 'nis0.nis',
-                'label' => 'Nis'
+            [
+                'attribute' => 'hari.nama',
+                'label' => 'Hari',
+                'value' => function ($model) {
+                    return isset($model->hari) ? $model->hari->nama : 'Data tidak tersedia';
+                },
             ],
-            'nama',
+            'jam_ke',
+            'materi:ntext',
+            [
+                'attribute' => 'kodeKelas.nama',
+                'label' => 'Kelas',
+                'value' => function ($model) {
+                    return isset($model->kodeKelas) ? $model->kodeKelas->nama : 'Data tidak tersedia';
+                },
+            ],
+            [
+                'attribute' => 'kodeMapel.nama',
+                'label' => 'Mata Pelajaran',
+                'value' => function ($model) {
+                    return isset($model->kodeMapel) ? $model->kodeMapel->nama : 'Data tidak tersedia';
+                },
+            ],
+            'jam_mulai',
+            'jam_selesai',
             'status',
-            'waktu_presensi',
-                ];
-                echo Gridview::widget([
-                'dataProvider' => $providerJurnalDetil,
-                'pjax' => true,
-                'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-jurnal-detil']],
-                'panel' => [
-                'type' => GridView::TYPE_PRIMARY,
-                'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Jurnal Detil'),
-                ],
-                                    'export' => false,
-                                'columns' => $gridColumnJurnalDetil
-                ]);
-                }
-                ?>
-            </div>
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+            'waktupresensi',
+        ],
+    ]) ?>
+
+    <br>
+    <?php if (isset($model->guru)): ?>
+        <h4>Data Guru</h4>
+        <?= DetailView::widget([
+            'model' => $model->guru,
+            'attributes' => [
+                'nama',
+                'kode_jk',
+                'nip',
+                'nik',
+                'tempat_lahir',
+                'tanggal_lahir',
+                'alamat',
+            ],
+        ]) ?>
+    <?php endif; ?>
+
+    <br>
+    <?php if (isset($model->hari)): ?>
+        <h4>Data Hari</h4>
+        <?= DetailView::widget([
+            'model' => $model->hari,
+            'attributes' => [
+                'nama',
+            ],
+        ]) ?>
+    <?php endif; ?>
+
+    <br>
+    <?php if (isset($model->kodeKelas)): ?>
+        <h4>Data Kelas</h4>
+        <?= DetailView::widget([
+            'model' => $model->kodeKelas,
+            'attributes' => [
+                'kode_jenjang',
+                'kode_jurusan',
+                'nama',
+            ],
+        ]) ?>
+    <?php endif; ?>
+
+    <br>
+    <?php if (isset($model->kodeMapel)): ?>
+        <h4>Data Mapel</h4>
+        <?= DetailView::widget([
+            'model' => $model->kodeMapel,
+            'attributes' => [
+                'nama',
+            ],
+        ]) ?>
+    <?php endif; ?>
+
+    <br>
+    <?php if (isset($model->kodeta0)): ?>
+        <h4>Data Tahun Ajaran</h4>
+        <?= DetailView::widget([
+            'model' => $model->kodeta0,
+            'attributes' => [
+                'semester',
+                'namata',
+                'isaktif',
+            ],
+        ]) ?>
+    <?php endif; ?>
+
+    <br><br>
+    <h3>Detail Jurnal</h3>
+    <?= GridView::widget([
+        'dataProvider' => $providerJurnalDetil,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => 'Detail Presensi Siswa',
+        ],
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'label' => 'NIS',
+                'attribute' => 'nis',
+                'value' => function ($model) {
+                    return $model->nis ?? 'N/A';
+                },
+            ],
+            [
+                'label' => 'Nama Siswa',
+                'value' => function ($model) {
+                    if (isset($model->nis0) && isset($model->nis0->nama)) {
+                        return $model->nis0->nama;
+                    } elseif (isset($model->siswa) && isset($model->siswa->nama)) {
+                        return $model->siswa->nama;
+                    }
+                    return 'Data tidak ditemukan';
+                },
+            ],
+            [
+                'label' => 'Status',
+                'value' => function ($model) {
+                    return $model->status ?? 'Tidak ada data';
+                },
+            ],
+            [
+                'label' => 'Kelas',
+                'value' => function ($model) {
+                    if (isset($model->nis0->kodeKelas->nama)) {
+                        return $model->nis0->kodeKelas->nama;
+                    } elseif (isset($model->siswa->kodeKelas->nama)) {
+                        return $model->siswa->kodeKelas->nama;
+                    }
+                    return 'Data tidak tersedia';
+                },
+            ],
+            [
+                'label' => 'Jurusan',
+                'value' => function ($model) {
+                    if (isset($model->nis0->kodeKelas->kodeJurusan->nama)) {
+                        return $model->nis0->kodeKelas->kodeJurusan->nama;
+                    } elseif (isset($model->siswa->kodeKelas->kodeJurusan->nama)) {
+                        return $model->siswa->kodeKelas->kodeJurusan->nama;
+                    }
+                    return 'Data tidak tersedia';
+                },
+            ],
+        ],
+    ]) ?>
+</div>

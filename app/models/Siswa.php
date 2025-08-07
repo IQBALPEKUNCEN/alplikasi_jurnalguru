@@ -22,12 +22,39 @@ class Siswa extends BaseSiswa
             [['nis', 'kode_kelas', 'no_hp'], 'string', 'max' => 20],
             [['nama', 'tempat_lahir', 'alamat'], 'string', 'max' => 255],
             [['kode_jk'], 'string', 'max' => 1],
-<<<<<<< HEAD
-=======
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
+
+            // [['lock'], 'default', 'value' => '0'],
+            // [['lock'], 'mootensai\components\OptimisticLockValidator']
+
         ]);
     }
-	
+
+    public function getKodeKelas()
+    {
+        return $this->hasOne(Kelas::class, ['kode_kelas' => 'kode_kelas']);
+    }
+    
+
+    public function getJurnalDetils()
+    {
+        return $this->hasMany(\app\models\JurnalDetil::class, ['nis' => 'nis']);
+    }
+
+    public function getHistorykelas()
+    {
+        return $this->hasMany(\app\models\Historykelas::class, ['nis' => 'nis']);
+    }
+
+
+    public function getKelas()
+    {
+        return $this->hasOne(Kelas::class, ['kode_kelas' => 'kode_kelas']);
+    }
+
+    public function getJurusan()
+    {
+        return $this->hasOne(Jurusan::class, ['kode_jurusan' => 'kode_jurusan']);
+    }
+    
 }

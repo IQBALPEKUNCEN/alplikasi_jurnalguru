@@ -17,14 +17,19 @@ class Kelas extends BaseKelas
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['kode_kelas'], 'required'],
+             [['kode_kelas'], 'unique', 'targetClass' => self::class],
             [['kode_kelas', 'kode_jenjang', 'kode_jurusan', 'nama'], 'string', 'max' => 20],
-<<<<<<< HEAD
-=======
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
+
+            // [['lock'], 'default', 'value' => '0'],
+            // [['lock'], 'mootensai\components\OptimisticLockValidator']
+
         ]);
     }
-	
+
+    public function getKodeJurusan()
+    {
+        return $this->hasOne(Jurusan::class, ['kode_jurusan' => 'kode_jurusan']);
+    }
+    
 }

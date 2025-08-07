@@ -17,7 +17,7 @@ class JurusanController extends Controller
     public function behaviors()
     {
         return [
-            'ghost-access'=> [
+            'ghost-access' => [
                 'class' => 'app\modules\UserManagement\components\GhostAccessControl',
             ],
             'verbs' => [
@@ -70,19 +70,15 @@ class JurusanController extends Controller
     {
         $model = new Jurusan();
 
-        if ($this->request->isPost) {
-            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
-                Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
-                return $this->redirect(['view', 'id' => $model->kode_jurusan]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->kode_jurusan]);
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
     }
+
 
     /**
      * Updates an existing Jurusan model.
@@ -94,10 +90,12 @@ class JurusanController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost) {
-            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
-                Yii::$app->session->setFlash('success', "Data berhasil diupdate");
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Data jurusan berhasil diupdate');
                 return $this->redirect(['view', 'id' => $model->kode_jurusan]);
+            } else {
+                Yii::$app->session->setFlash('error', 'Gagal mengupdate data jurusan');
             }
         }
 
@@ -105,6 +103,7 @@ class JurusanController extends Controller
             'model' => $model,
         ]);
     }
+
 
     /**
      * Deletes an existing Jurusan model.
@@ -126,7 +125,7 @@ class JurusanController extends Controller
         return $this->redirect(['index']);
     }
 
-    
+
     /**
      * Finds the Jurusan model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -142,15 +141,15 @@ class JurusanController extends Controller
             throw new NotFoundHttpException('Data tidak ditemukan.');
         }
     }
-    
+
     /**
-    * Action to load a tabular form grid
-    * for Kelas
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
+     * Action to load a tabular form grid
+     * for Kelas
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
     public function actionAddKelas()
     {
         if ($this->request->isAjax) {
@@ -158,7 +157,7 @@ class JurusanController extends Controller
             if (!empty($row)) {
                 $row = array_values($row);
             }
-            if(($this->request->post('isNewRecord') && $this->request->post('_action') == 'load' && empty($row)) || $this->request->post('_action') == 'add')
+            if (($this->request->post('isNewRecord') && $this->request->post('_action') == 'load' && empty($row)) || $this->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formKelas', ['row' => $row]);
         } else {

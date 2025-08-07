@@ -10,7 +10,7 @@ use app\models\base\Jurusan;
 /**
  * app\models\JurusanSearch represents the model behind the search form about `app\models\base\Jurusan`.
  */
- class JurusanSearch extends Jurusan
+class JurusanSearch extends Jurusan
 {
     /**
      * @inheritdoc

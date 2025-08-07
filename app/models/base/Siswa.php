@@ -25,15 +25,10 @@ use mootensai\behaviors\UUIDBehavior;
 class Siswa extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
-
-<<<<<<< HEAD
-    public function __construct(){
-=======
     
-
     public function __construct(){
         
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
     }
 
     /**
@@ -59,11 +54,7 @@ class Siswa extends \yii\db\ActiveRecord
             [['nis', 'kode_kelas', 'no_hp'], 'string', 'max' => 20],
             [['nama', 'tempat_lahir', 'alamat'], 'string', 'max' => 255],
             [['kode_jk'], 'string', 'max' => 1],
-<<<<<<< HEAD
-=======
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
         ];
     }
 
@@ -82,12 +73,7 @@ class Siswa extends \yii\db\ActiveRecord
      * return string name of field are used to stored optimistic lock
      *
      */
-<<<<<<< HEAD
-=======
-    public function optimisticLock() {
-        return 'lock';
-    }
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
 
     /**
      * @inheritdoc
@@ -109,47 +95,53 @@ class Siswa extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getHistorykelas()
-    {
-        return $this->hasMany(\app\models\Historykelas::className(), ['nis' => 'nis']);
-    }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getJurnalDetils()
     {
-        return $this->hasMany(\app\models\JurnalDetil::className(), ['nis' => 'nis']);
+        return $this->hasMany(\app\models\JurnalDetil::class, ['nis' => 'nis']);
+    }
+
+    public function getHistorykelas()
+    {
+        return $this->hasMany(\app\models\Historykelas::class, ['nis' => 'nis']);
+    }
+
+
+    public function getKodeJurusan()
+    {
+        return $this->hasOne(\app\models\base\Jurusan::class, ['kode_jurusan' => 'kode_jurusan'])
+            ->via('kodeKelas');
+    }
+
+    public function getKodeKelas()
+    {
+        return $this->hasOne(\app\models\base\Kelas::class, ['kode_kelas' => 'kode_kelas']);
+    }
+
+    public function getKelas()
+    {
+        return $this->hasOne(Kelas::class, ['kode_kelas' => 'kode_kelas']);
     }
     
+
+
+
+
     /**
      * @inheritdoc
      * @return array mixed
      */
-    public function behaviors()
-    {
-<<<<<<< HEAD
-        return [];
-=======
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-            'uuid' => [
-                'class' => UUIDBehavior::className(),
-                'column' => 'id',
-            ],
-        ];
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
-    }
+    // public function behaviors()
+    // {
+    //     return [
+    //         // Jika tidak ada kolom created_at di tabel, hapus atau modifikasi behavior ini
+    //         'timestamp' => [
+    //             'class' => TimestampBehavior::className(),
+    //             'createdAtAttribute' => false, // Set false jika tidak ada kolom created_at
+    //             'updatedAtAttribute' => false, // Set false jika tidak ada kolom updated_at
+    //         ],
+    //         // Behavior lainnya jika ada
+    //     ];
+    // }
 
     /**
      * The following code shows how to apply a default condition for all queries:
@@ -179,11 +171,7 @@ class Siswa extends \yii\db\ActiveRecord
      */
     public static function find()
     {
-<<<<<<< HEAD
-       return new \app\models\SiswaQuery(get_called_class());
-=======
+
         return new \app\models\SiswaQuery(get_called_class());
-       
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     }
 }

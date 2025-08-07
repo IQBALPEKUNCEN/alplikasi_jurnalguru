@@ -22,25 +22,10 @@ class Tahunajaran extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
-<<<<<<< HEAD
-    public function __construct() {}
-
     /**
      * This function helps \mootensai\relation\RelationTrait runs faster
      * @return array relation names of this model
      */
-=======
-    
-
-    public function __construct(){
-        
-    }
-
-    /**
-    * This function helps \mootensai\relation\RelationTrait runs faster
-    * @return array relation names of this model
-    */
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     public function relationNames()
     {
         return [
@@ -58,24 +43,12 @@ class Tahunajaran extends \yii\db\ActiveRecord
             [['kodeta'], 'required'],
             [['semester'], 'string'],
             [['kodeta', 'namata'], 'string', 'max' => 20],
-            [['isaktif'], 'string', 'max' => 1],
-<<<<<<< HEAD
-            // Tambahkan custom rule untuk memeriksa isaktif
-=======
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+            [['isaktif'], 'integer', 'min' => 0, 'max' => 1],
+            [['isaktif'], 'default', 'value' => 0],
         ];
     }
 
     /**
-<<<<<<< HEAD
-     * Custom validation rule untuk memastikan isaktif tidak diset ke '1' pada saat penyimpanan
-     */
-
-    /**
-=======
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
      * @inheritdoc
      */
     public static function tableName()
@@ -84,124 +57,97 @@ class Tahunajaran extends \yii\db\ActiveRecord
     }
 
     /**
-<<<<<<< HEAD
-=======
-     *
-     * @return string
-     * overwrite function optimisticLock
-     * return string name of field are used to stored optimistic lock
-     *
-     */
-    public function optimisticLock() {
-        return 'lock';
-    }
-
-    /**
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'kodeta' => 'Kodeta',
+            'kodeta' => 'Kode Tahun Ajaran',
             'semester' => 'Semester',
-            'namata' => 'Namata',
-            'isaktif' => 'Isaktif',
+            'namata' => 'Nama Tahun Ajaran',
+            'isaktif' => 'Status Aktif',
         ];
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+    /**
+     * Constructor
+     */
+    public function __construct($config = [])
+    {
+        parent::__construct($config);
+    }
+
+    /**
+     * Before save event - handle active status
+     */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            // Jika data ini diset sebagai aktif
+            if ($this->isaktif == 1) {
+                // Nonaktifkan semua data lain kecuali yang sedang disimpan
+                if ($insert) {
+                    // Untuk insert baru, nonaktifkan semua
+                    self::updateAll(['isaktif' => 0]);
+                } else {
+                    // Untuk update, nonaktifkan semua kecuali record ini
+                    self::updateAll(['isaktif' => 0], 'kodeta != :id', [':id' => $this->kodeta]);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get active tahun ajaran
+     * @return Tahunajaran|null
+     */
+    public static function getActive()
+    {
+        return self::find()->where(['isaktif' => 1])->one();
+    }
+
+    /**
+     * Check if this tahun ajaran is active
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->isaktif == 1;
+    }
+
+    /**
+     * Get status text
+     * @return string
+     */
+    public function getStatusText()
+    {
+        return $this->isaktif == 1 ? 'Aktif' : 'Tidak Aktif';
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getHistorykelas()
     {
-        return $this->hasMany(\app\models\Historykelas::className(), ['kodeta' => 'kodeta']);
+        return $this->hasMany(Historykelas::className(), ['kodeta' => 'kodeta']);
     }
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getJurnals()
     {
-        return $this->hasMany(\app\models\Jurnal::className(), ['kodeta' => 'kodeta']);
+        return $this->hasMany(Jurnal::className(), ['kodeta' => 'kodeta']);
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     /**
-     * @inheritdoc
-     * @return array mixed
+     * Get jurnal property for compatibility
+     * @return \yii\db\ActiveQuery
      */
-    public function behaviors()
+    public function getJurnal()
     {
-<<<<<<< HEAD
-        return [];
-    }
-
-    /**
-=======
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
-            'blameable' => [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-            'uuid' => [
-                'class' => UUIDBehavior::className(),
-                'column' => 'id',
-            ],
-        ];
-    }
-
-    /**
-     * The following code shows how to apply a default condition for all queries:
-     *
-     * ```php
-     * class Customer extends ActiveRecord
-     * {
-     *     public static function find()
-     *     {
-     *         return parent::find()->where(['deleted' => false]);
-     *     }
-     * }
-     *
-     * // Use andWhere()/orWhere() to apply the default condition
-     * // SELECT FROM customer WHERE `deleted`=:deleted AND age>30
-     * $customers = Customer::find()->andWhere('age>30')->all();
-     *
-     * // Use where() to ignore the default condition
-     * // SELECT FROM customer WHERE age>30
-     * $customers = Customer::find()->where('age>30')->all();
-     * ```
-     */
-
-    /**
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
-     * @inheritdoc
-     * @return \app\models\TahunajaranQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \app\models\TahunajaranQuery(get_called_class());
-<<<<<<< HEAD
-=======
-        
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+        return $this->getJurnals();
     }
 }

@@ -42,22 +42,21 @@ use app\models\base\Tahunajaran;
     {
         $query = Tahunajaran::find();
 
+        // Tambahkan kondisi pencarian yang sesuai dengan parameter
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+        // Validasi form pencarian
+        if (!$this->load($params)) {
             return $dataProvider;
         }
 
+        // Tambahkan filter pencarian yang diperlukan
         $query->andFilterWhere(['like', 'kodeta', $this->kodeta])
             ->andFilterWhere(['like', 'semester', $this->semester])
             ->andFilterWhere(['like', 'namata', $this->namata])
-            ->andFilterWhere(['like', 'isaktif', $this->isaktif]);
+            ->andFilterWhere(['isaktif' => $this->isaktif]);
 
         return $dataProvider;
     }

@@ -2,16 +2,16 @@
 
 namespace app\controllers;
 
-<<<<<<< HEAD
-use app\models\base\Jurnal;
-=======
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
 use Yii;
+use app\models\base\Jurnal;
 use app\models\base\JurnalDetil;
+use app\models\base\Siswa;
 use app\models\JurnalDetilSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+
 
 /**
  * JurnalDetilController implements the CRUD actions for JurnalDetil model.
@@ -21,7 +21,7 @@ class JurnalDetilController extends Controller
     public function behaviors()
     {
         return [
-            'ghost-access'=> [
+            'ghost-access' => [
                 'class' => 'app\modules\UserManagement\components\GhostAccessControl',
             ],
             'verbs' => [
@@ -56,68 +56,43 @@ class JurnalDetilController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+
+        // Pastikan jurnalDetils ada dan tidak null sebelum dibuat dataprovider
+        $jurnalDetils = [];
+        if ($model && is_object($model) && method_exists($model, 'getJurnalDetils')) {
+            // Pastikan relasi jurnalDetils bukan boolean atau kosong
+            $jurnalDetils = $model->jurnalDetils ? $model->jurnalDetils : [];
+        }
+
+        $providerJurnalDetil = new \yii\data\ArrayDataProvider([
+            'allModels' => $jurnalDetils,
+        ]);
+
         return $this->render('view', [
             'model' => $model,
+            'providerJurnalDetil' => $providerJurnalDetil,
         ]);
     }
 
+
+
     /**
      * Creates a new JurnalDetil model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param integer $jurnal_id
      * @return mixed
      */
-<<<<<<< HEAD
-    // public function actionCreate()
-    // {
-    //     $model = new JurnalDetil();
-
-    //     if ($this->request->isPost) {
-    //         if ($model->loadAll($this->request->post()) && $model->saveAll()) {
-    //             Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
-    //             return $this->redirect(['view', 'id' => $model->detil_id]);
-    //         }
-    //     } else {
-    //         $model->loadDefaultValues();
-    //     }
-
-    //     return $this->render('create', [
-    //         'model' => $model,
-    //     ]);
-    // }
     public function actionCreate($jurnal_id)
     {
         $model = new JurnalDetil();
+        $model->jurnal_id = $jurnal_id; // set hubungan ke jurnal utama
 
-        if ($model->load(Yii::$app->request->post())) {
-            // Ambil waktu_presensi dari jurnal
-            $jurnal = Jurnal::findOne($jurnal_id);
-            if ($jurnal) {
-                $model->waktu_presensi = $jurnal->waktupresensi; // Isi waktu presensi dari jurnal
-            }
-            if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->detil_id]);
-            }
-=======
-    public function actionCreate()
-    {
-        $model = new JurnalDetil();
-
-        if ($this->request->isPost) {
-            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
-                Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
-                return $this->redirect(['view', 'id' => $model->detil_id]);
-            }
-        } else {
-            $model->loadDefaultValues();
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Detail jurnal berhasil ditambahkan.');
+            return $this->redirect(['jurnal/view', 'id' => $jurnal_id]); // kembali ke view jurnal utama
         }
 
         return $this->render('create', [
             'model' => $model,
-<<<<<<< HEAD
-            'jurnal_id' => $jurnal_id,
-=======
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
         ]);
     }
 
@@ -131,17 +106,16 @@ class JurnalDetilController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost) {
-            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
-                Yii::$app->session->setFlash('success', "Data berhasil diupdate");
-                return $this->redirect(['view', 'id' => $model->detil_id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Detail jurnal berhasil diperbarui.');
+            return $this->redirect(['jurnal/view', 'id' => $model->jurnal_id]);
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
     }
+
 
     /**
      * Deletes an existing JurnalDetil model.
@@ -151,11 +125,10 @@ class JurnalDetilController extends Controller
      */
     public function actionDelete($id)
     {
-        // $this->findModel($id)->deleteWithRelated();
         $result = $this->findModel($id)->delete();
 
         if ($result) {
-            Yii::$app->session->setFlash('success', "Berhasil menghapus $result data.");
+            Yii::$app->session->setFlash('success', "Berhasil menghapus data.");
         } else {
             Yii::$app->session->setFlash('error', 'Gagal menghapus data.');
         }
@@ -163,7 +136,6 @@ class JurnalDetilController extends Controller
         return $this->redirect(['index']);
     }
 
-    
     /**
      * Finds the JurnalDetil model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -175,8 +147,57 @@ class JurnalDetilController extends Controller
     {
         if (($model = JurnalDetil::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('Data tidak ditemukan.');
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionGetSiswaByKelas($kelas_id = null)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        if (!$kelas_id) {
+            return [
+                'success' => false,
+                'message' => 'Kelas ID tidak ditemukan.',
+                'data' => [],
+            ];
+        }
+
+        try {
+            $siswaList = Siswa::find()
+                ->where(['kelas_id' => $kelas_id])
+                ->orderBy('nama ASC')
+                ->asArray()
+                ->all();
+
+            if (empty($siswaList)) {
+                return [
+                    'success' => true,
+                    'data' => [],
+                    'message' => 'Tidak ada siswa pada kelas ini.'
+                ];
+            }
+
+            $result = [];
+            foreach ($siswaList as $siswa) {
+                $result[] = [
+                    'id' => $siswa['id'],                       // <- penting
+                    'nama' => $siswa['nama'],
+                    'jurusan' => $siswa['kode_jurusan'] ?? '',
+                ];
+            }
+
+            return [
+                'success' => true,
+                'data' => $result,
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'message' => 'Gagal mengambil data siswa.',
+                'error' => $e->getMessage(),
+            ];
         }
     }
 }

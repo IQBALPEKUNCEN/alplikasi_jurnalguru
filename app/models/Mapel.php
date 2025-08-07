@@ -20,11 +20,11 @@ class Mapel extends BaseMapel
             [['kode_mapel'], 'required'],
             [['kode_mapel'], 'string', 'max' => 20],
             [['nama'], 'string', 'max' => 50],
-<<<<<<< HEAD
-=======
-            [['lock'], 'default', 'value' => '0'],
-            [['lock'], 'mootensai\components\OptimisticLockValidator']
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
+
+            // [['lock'], 'default', 'value' => '0'],
+            // [['lock'], 'mootensai\components\OptimisticLockValidator']
+
         ]);
     }
 	

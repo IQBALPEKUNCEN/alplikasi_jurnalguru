@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use app\models\base\Siswa;
 
 /**
- * app\models\SiswaSearch represents the model behind the search form about `app\models\base\Siswa`.
+ * SiswaSearch represents the model behind the search form of `app\models\base\Siswa`.
  */
- class SiswaSearch extends Siswa
+class SiswaSearch extends Siswa
 {
     /**
      * @inheritdoc
@@ -44,12 +44,18 @@ use app\models\base\Siswa;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'kode_kelas' => SORT_ASC,
+                    'nama' => SORT_ASC,
+                ],
+            ],
         ]);
 
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
+            // Uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }

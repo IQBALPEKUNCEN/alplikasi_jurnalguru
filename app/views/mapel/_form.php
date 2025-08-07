@@ -7,62 +7,106 @@ use kartik\form\ActiveForm;
 /* @var $model app\models\base\Mapel */
 /* @var $form kartik\form\ActiveForm */
 
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
-    'viewParams' => [
-        'class' => 'Jurnal', 
-        'relID' => 'jurnal', 
-        'value' => \yii\helpers\Json::encode($model->jurnals),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
+$this->title = $model->isNewRecord ? 'Tambah Mapel' : 'Edit Mapel';
+$this->params['breadcrumbs'][] = ['label' => '📘 Mata Pelajaran', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+
+// CSS modern ala UI component
+$this->registerCss(<<<CSS
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    padding: 40px;
+}
+
+.mapel-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: auto;
+}
+
+.mapel-form h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.mapel-form .form-group {
+    margin-bottom: 20px;
+}
+
+.mapel-form input {
+    border-radius: 8px !important;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+}
+
+.mapel-form .btn {
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+
+.mapel-form .btn-success {
+    background-color: #10b981;
+    color: white;
+}
+
+.mapel-form .btn-success:hover {
+    background-color: #059669;
+}
+
+.mapel-form .btn-primary {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.mapel-form .btn-primary:hover {
+    background-color: #2563eb;
+}
+
+.mapel-form .btn-danger {
+    background-color: #ef4444;
+    color: white;
+}
+
+.mapel-form .btn-danger:hover {
+    background-color: #dc2626;
+}
+CSS);
 ?>
 
 <div class="mapel-form">
+
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->errorSummary($model); ?>
 
-    <?= $form->field($model, 'kode_mapel')->textInput(['maxlength' => true, 'placeholder' => 'Kode Mapel']) ?>
+    <?= $form->field($model, 'kode_mapel')->textInput([
+        'maxlength' => true,
+        'placeholder' => 'Contoh: MTH101',
+    ]) ?>
 
-    <?= $form->field($model, 'nama')->textInput(['maxlength' => true, 'placeholder' => 'Nama']) ?>
+    <?= $form->field($model, 'nama')->textInput([
+        'maxlength' => true,
+        'placeholder' => 'Contoh: Matematika',
+    ]) ?>
 
-<<<<<<< HEAD
-    
-
-    <!-- <?php
-=======
-    <?php
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
-    $forms = [
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Jurnal'),
-            'content' => $this->render('_formJurnal', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->jurnals),
-            ]),
-        ],
-    ];
-    echo kartik\tabs\TabsX::widget([
-        'items' => $forms,
-        'position' => kartik\tabs\TabsX::POS_ABOVE,
-        'encodeLabels' => false,
-        'pluginOptions' => [
-            'bordered' => true,
-            'sideways' => true,
-            'enableCache' => false,
-        ],
-    ]);
-<<<<<<< HEAD
-    ?> -->
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Tambah' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Batal'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
-=======
-    ?>
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+    <div class="form-group text-center">
+        <?= Html::submitButton($model->isNewRecord ? '💾 Simpan' : '✏️ Update', [
+            'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'
+        ]) ?>
+        <?= Html::a('❌ Batal', Yii::$app->request->referrer ?: ['index'], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

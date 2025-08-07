@@ -5,15 +5,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Jenjang */
 
-<<<<<<< HEAD
+
 $this->title = 'Ubah Jenjang: ' . ' ' . $model->kode_jenjang;
 $this->params['breadcrumbs'][] = ['label' => 'Jenjang', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->kode_jenjang, 'url' => ['view', 'id' => $model->kode_jenjang]];
-=======
+
 $this->title = 'Update Jenjang: ' . ' ' . $model->kode_jenjang;
 $this->params['breadcrumbs'][] = ['label' => 'Jenjang', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->kode_jenjang, 'url' => ['view', ]];
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="jenjang-update">

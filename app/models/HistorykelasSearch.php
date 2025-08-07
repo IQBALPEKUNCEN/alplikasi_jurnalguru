@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use app\models\base\Historykelas;
 
 /**
- * app\models\HistorykelasSearch represents the model behind the search form about `app\models\base\Historykelas`.
+ * HistorykelasSearch represents the model behind the search form of `app\models\base\Historykelas`.
  */
- class HistorykelasSearch extends Historykelas
+class HistorykelasSearch extends Historykelas
 {
     /**
      * @inheritdoc
@@ -18,8 +18,7 @@ use app\models\base\Historykelas;
     public function rules()
     {
         return [
-            [['history_id'], 'integer'],
-            [['nis', 'kodeta', 'kode_kelas'], 'safe'],
+            [['history_id', 'nis', 'kodeta', 'kode_kelas'], 'safe'],
         ];
     }
 
@@ -45,21 +44,26 @@ use app\models\base\Historykelas;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 20, // atau sesuaikan dengan kebutuhan
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'history_id' => SORT_DESC,
+                ],
+            ],
         ]);
 
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+            // Jika validasi gagal, jangan kembalikan data apa pun
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'history_id' => $this->history_id,
-        ]);
-
-        $query->andFilterWhere(['like', 'nis', $this->nis])
+        // Filter pencarian
+        $query->andFilterWhere(['like', 'history_id', $this->history_id])
+            ->andFilterWhere(['like', 'nis', $this->nis])
             ->andFilterWhere(['like', 'kodeta', $this->kodeta])
             ->andFilterWhere(['like', 'kode_kelas', $this->kode_kelas]);
 

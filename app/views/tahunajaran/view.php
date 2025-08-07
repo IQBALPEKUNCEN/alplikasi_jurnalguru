@@ -7,119 +7,162 @@ use app\modules\UserManagement\components\GhostHtml;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Tahunajaran */
+/* @var $providerHistorykelas yii\data\ActiveDataProvider */
+/* @var $providerJurnal yii\data\ActiveDataProvider */
 
 $this->title = $model->kodeta;
-<<<<<<< HEAD
-$this->params['breadcrumbs'][] = ['label' => 'Tahun ajaran', 'url' => ['index']];
-=======
-$this->params['breadcrumbs'][] = ['label' => 'Tahunajaran', 'url' => ['index']];
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+$this->params['breadcrumbs'][] = ['label' => 'Tahun Ajaran', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="tahunajaran-view">
-    <div class="d-flex justify-content-between mt-4 mb-2">
-        <h2><?= 'Tahunajaran'  . Html::encode($this->title) ?></h2>
 
+$this->registerCss(<<<CSS
+.tahunajaran-view {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    margin-top: 30px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.tahunajaran-view h2 {
+    color: #1a237e;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.tahunajaran-view .btn {
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px 18px;
+    margin-left: 5px;
+}
+
+.tahunajaran-view .btn-success {
+    background: linear-gradient(135deg, #00b894, #00cec9);
+    border: none;
+}
+
+.tahunajaran-view .btn-info {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    border: none;
+}
+
+.tahunajaran-view .btn-primary {
+    background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+    border: none;
+}
+
+.tahunajaran-view .btn-danger {
+    background: linear-gradient(135deg, #ff7675, #d63031);
+    border: none;
+}
+
+.kv-grid-table th {
+    background-color: #bbdefb;
+    color: #0d47a1;
+    text-align: center;
+}
+
+.kv-grid-table td {
+    background-color: #e3f2fd;
+    text-align: center;
+}
+CSS);
+?>
+
+<div class="tahunajaran-view">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>📘 Tahun Ajaran: <?= Html::encode($this->title) ?></h2>
         <div>
-                                    
-            <?= GhostHtml::a('Baru', ['/tahunajaran/create'], ['class' => 'btn btn-success']) ?>
-            <?= GhostHtml::a('List', ['/tahunajaran/index'], ['class' => 'btn btn-info']) ?>
-            <?= GhostHtml::a('Update', ['/tahunajaran/update', 'id' => $model->kodeta], ['class' => 'btn btn-primary']) ?>
-            <?= GhostHtml::a('Delete', ['/tahunajaran/delete', 'id' => $model->kodeta], [
+            <?= GhostHtml::a('➕ Baru', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= GhostHtml::a('📋 List', ['index'], ['class' => 'btn btn-info']) ?>
+            <?= GhostHtml::a('✏️ Update', ['update', 'id' => $model->kodeta], ['class' => 'btn btn-primary']) ?>
+            <?= GhostHtml::a('🗑️ Hapus', ['delete', 'id' => $model->kodeta], [
                 'class' => 'btn btn-danger',
                 'data' => [
-<<<<<<< HEAD
-                    'confirm' => 'Apakah anda ingin menghapus data ini?',
-=======
-                    'confirm' => 'Are you sure you want to delete this item?',
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+                    'confirm' => 'Apakah Anda yakin ingin menghapus data ini?',
                     'method' => 'post',
                 ],
-            ])
-            ?>
+            ]) ?>
         </div>
     </div>
 
-    <?php 
-    $gridColumn = [
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
             'kodeta',
-        'semester',
-        'namata',
-        'isaktif',
-    ];
-    echo DetailView::widget([
-    'model' => $model,
-    'attributes' => $gridColumn
-    ]);
-    ?>
+            'semester',
+            'namata',
+            [
+                'attribute' => 'isaktif',
+                'value' => $model->isaktif ? '✅ Aktif' : '❌ Tidak Aktif',
+            ],
+        ],
+    ]) ?>
+
     <br>
-                            <?php
-                if($providerHistorykelas->totalCount){
-                $gridColumnHistorykelas = [
-                ['class' => 'yii\grid\SerialColumn'],
-                            'history_id',
-            [
-                'attribute' => 'nis0.nis',
-                'label' => 'Nis'
-            ],
-                        [
-                'attribute' => 'kodeKelas.kode_kelas',
-                'label' => 'Kode Kelas'
-            ],
-                ];
-                echo Gridview::widget([
-                'dataProvider' => $providerHistorykelas,
-                'pjax' => true,
-                'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-historykelas']],
-                'panel' => [
+
+    <?php if ($providerHistorykelas->totalCount > 0): ?>
+        <?= GridView::widget([
+            'dataProvider' => $providerHistorykelas,
+            'pjax' => true,
+            'pjaxSettings' => ['options' => ['id' => 'pjax-historykelas']],
+            'panel' => [
                 'type' => GridView::TYPE_PRIMARY,
-                'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Historykelas'),
-                ],
-                                    'export' => false,
-                                'columns' => $gridColumnHistorykelas
-                ]);
-                }
-                ?>
-                                    <?php
-                if($providerJurnal->totalCount){
-                $gridColumnJurnal = [
+                'heading' => '<i class="glyphicon glyphicon-education"></i> History Kelas',
+            ],
+            'export' => false,
+            'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-                            'jurnal_id',
-            [
-                'attribute' => 'guru.guru_id',
-                'label' => 'Guru'
-            ],
-                        [
-                'attribute' => 'hari.hari_id',
-                'label' => 'Hari'
-            ],
-            'jam_ke',
-            'materi:ntext',
-            [
-                'attribute' => 'kodeKelas.kode_kelas',
-                'label' => 'Kode Kelas'
-            ],
-            [
-                'attribute' => 'kodeMapel.kode_mapel',
-                'label' => 'Kode Mapel'
-            ],
-            'jam_mulai',
-            'jam_selesai',
-            'status',
-            'waktupresensi',
-            'file_siswa',
-                ];
-                echo Gridview::widget([
-                'dataProvider' => $providerJurnal,
-                'pjax' => true,
-                'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-jurnal']],
-                'panel' => [
-                'type' => GridView::TYPE_PRIMARY,
-                'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Jurnal'),
+                'history_id',
+                [
+                    'attribute' => 'nis0.nis',
+                    'label' => 'NIS',
                 ],
-                                    'export' => false,
-                                'columns' => $gridColumnJurnal
-                ]);
-                }
-                ?>
-            </div>
+                [
+                    'attribute' => 'kodeKelas.kode_kelas',
+                    'label' => 'Kode Kelas',
+                ],
+            ],
+        ]) ?>
+    <?php endif; ?>
+
+    <?php if ($providerJurnal->totalCount > 0): ?>
+        <?= GridView::widget([
+            'dataProvider' => $providerJurnal,
+            'pjax' => true,
+            'pjaxSettings' => ['options' => ['id' => 'pjax-jurnal']],
+            'panel' => [
+                'type' => GridView::TYPE_PRIMARY,
+                'heading' => '<i class="glyphicon glyphicon-book"></i> Jurnal',
+            ],
+            'export' => false,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'jurnal_id',
+                [
+                    'attribute' => 'guru.guru_id',
+                    'label' => 'Guru',
+                ],
+                [
+                    'attribute' => 'hari.hari_id',
+                    'label' => 'Hari',
+                ],
+                'jam_ke',
+                'materi:ntext',
+                [
+                    'attribute' => 'kodeKelas.kode_kelas',
+                    'label' => 'Kelas',
+                ],
+                [
+                    'attribute' => 'kodeMapel.kode_mapel',
+                    'label' => 'Mapel',
+                ],
+                'jam_mulai',
+                'jam_selesai',
+                'status',
+                'waktupresensi',
+            ],
+        ]) ?>
+    <?php endif; ?>
+</div>

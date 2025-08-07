@@ -10,18 +10,15 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-<<<<<<< HEAD
     'name' => 'Jurnal Guru',
-=======
-    "name" => "Jurnal Guru",
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
     'basePath' => dirname(__DIR__),
     'timeZone' => 'Asia/Jakarta',
     'bootstrap' => ['log'],
     'vendorPath' => __DIR__ . '/../../vendor',
+    // 'vendorPath' => dirname(__DIR__) . '/vendor',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -65,8 +62,10 @@ $config = [
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [
-        'jurnal/laporan' => 'jurnal/laporan',
-    ],
+        'jurnal/laporan-guru' => 'jurnal/laporan-guru',
+        'jurnal/laporan-siswa' => 'jurnal/laporan-siswa',
+        'jurnal/get-siswa-by-kelas' => 'jurnal/get-siswa-by-kelas',
+     ],
 ],
 
         

@@ -1,0 +1,15 @@
+<html><head><meta charset='utf-8'><title>Export Word</title></head><body><div class="summary">Showing <b>1-8</b> of <b>8</b> items.</div>
+<table class="table table-striped table-bordered"><thead>
+<tr><th>#</th><th><a class="desc" href="/aplikasi-jurnalguru/jurnal/laporan?format=pdf&amp;sort=tanggal" data-sort="tanggal">Tanggal</a></th><th>Nama Guru</th><th><a href="/aplikasi-jurnalguru/jurnal/laporan?format=pdf&amp;sort=kode_kelas" data-sort="kode_kelas">Kelas</a></th><th><a href="/aplikasi-jurnalguru/jurnal/laporan?format=pdf&amp;sort=kode_mapel" data-sort="kode_mapel">Mata Pelajaran</a></th><th><a href="/aplikasi-jurnalguru/jurnal/laporan?format=pdf&amp;sort=status" data-sort="status">Status</a></th><th><a class="desc" href="/aplikasi-jurnalguru/jurnal/laporan?format=pdf&amp;sort=waktupresensi" data-sort="waktupresensi">Waktu Presensi</a></th></tr>
+</thead>
+<tbody>
+<tr data-key="105"><td>1</td><td>31-07-2025</td><td>iqbal</td><td>10</td><td>B.inggris</td><td><span class="badge badge-success">Hadir</span></td><td>02-07-2025 09:28:00</td></tr>
+<tr data-key="106"><td>2</td><td>02-07-2025</td><td>iqbal</td><td>10</td><td>B.inggris</td><td><span class="badge badge-success">Hadir</span></td><td>02-07-2025 10:59:00</td></tr>
+<tr data-key="104"><td>3</td><td>01-07-2025</td><td>iqbal</td><td>10</td><td>B.inggris</td><td><span class="badge badge-secondary">TIDAK_HADIR</span></td><td>02-07-2025 01:16:00</td></tr>
+<tr data-key="102"><td>4</td><td>27-06-2025</td><td>samsul</td><td>3</td><td>b.bms</td><td><span class="badge badge-secondary">TIDAK_HADIR</span></td><td>27-06-2025 20:54:00</td></tr>
+<tr data-key="101"><td>5</td><td>27-06-2025</td><td>panjul</td><td>10</td><td>B.inggris</td><td><span class="badge badge-warning">Sakit</span></td><td>27-06-2025 18:47:00</td></tr>
+<tr data-key="98"><td>6</td><td>27-06-2025</td><td>panjul</td><td>10</td><td>B.inggris</td><td><span class="badge badge-success">Hadir</span></td><td>27-06-2025 18:07:00</td></tr>
+<tr data-key="99"><td>7</td><td>27-06-2025</td><td>panjul</td><td>10</td><td>B.inggris</td><td><span class="badge badge-info">Izin</span></td><td>27-06-2025 18:07:00</td></tr>
+<tr data-key="100"><td>8</td><td>04-06-2025</td><td>iqbal</td><td>3</td><td>B.inggris</td><td><span class="badge badge-success">Hadir</span></td><td>27-06-2025 18:08:00</td></tr>
+</tbody></table>
+</body></html>

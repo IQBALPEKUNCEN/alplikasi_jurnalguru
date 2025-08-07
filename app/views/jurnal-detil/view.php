@@ -34,30 +34,30 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php 
     $gridColumn = [
-<<<<<<< HEAD
+
         //     'detil_id',
         // [
         //     'attribute' => 'jurnal.jurnal_id',
         //     'label' => 'Jurnal',
         // ],
-=======
+
             'detil_id',
         [
             'attribute' => 'jurnal.jurnal_id',
             'label' => 'Jurnal',
         ],
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
         [
             'attribute' => 'nis0.nis',
             'label' => 'Nis',
         ],
         'nama',
         'status',
-<<<<<<< HEAD
+
         // 'waktu_presensi',
-=======
+
         'waktu_presensi',
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
     ];
     echo DetailView::widget([
     'model' => $model,
@@ -69,11 +69,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <h4>Jurnal<?= ' '. Html::encode($this->title) ?></h4>
             <?php 
             $gridColumnJurnal = [
-<<<<<<< HEAD
+
                     'nama',
-=======
+
                     'guru_id',
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
         'kodeta',
         'hari_id',
         'jam_ke',
@@ -83,19 +83,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'jam_mulai',
         'jam_selesai',
         'status',
-<<<<<<< HEAD
+
         // 'waktupresensi',
         // 'file_siswa',
-=======
+
         'waktupresensi',
         'file_siswa',
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
             ];
             echo DetailView::widget([
             'model' => $model->jurnal,
             'attributes' => $gridColumnJurnal            ]);
-<<<<<<< HEAD
-=======
+
+
             ?>
                                 <br>
             <h4>Siswa<?= ' '. Html::encode($this->title) ?></h4>
@@ -114,4 +114,4 @@ $this->params['breadcrumbs'][] = $this->title;
             'attributes' => $gridColumnSiswa            ]);
             ?>
             </div>
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\base\Tahunajaran;
 use app\models\base\Kelas;
 use app\models\KelasSearch;
 use yii\web\Controller;
@@ -73,38 +74,30 @@ class KelasController extends Controller
     public function actionCreate()
     {
         $model = new Kelas();
-
-        if ($this->request->isPost) {
-            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
+        if (Yii::$app->request->isPost) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
                 return $this->redirect(['view', 'id' => $model->kode_kelas]);
+            } else {
+                Yii::$app->session->setFlash('error', "Data gagal disimpan. " . implode(", ", $model->getErrors()));
             }
         } else {
             $model->loadDefaultValues();
         }
-
         return $this->render('create', [
             'model' => $model,
         ]);
     }
 
-    /**
-     * Updates an existing Kelas model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($this->request->isPost) {
-            if ($model->loadAll($this->request->post()) && $model->saveAll()) {
+        if (Yii::$app->request->isPost) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('success', "Data berhasil diupdate");
                 return $this->redirect(['view', 'id' => $model->kode_kelas]);
             }
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
@@ -155,20 +148,19 @@ class KelasController extends Controller
     *
     * @return mixed
     */
-    public function actionAddHistorykelas()
-    {
-        if ($this->request->isAjax) {
-            $row = $this->request->post('Historykelas');
-            if (!empty($row)) {
-                $row = array_values($row);
-            }
-            if(($this->request->post('isNewRecord') && $this->request->post('_action') == 'load' && empty($row)) || $this->request->post('_action') == 'add')
-                $row[] = [];
-            return $this->renderAjax('_formHistorykelas', ['row' => $row]);
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
+//     public function actionAddJurnal() {
+//     if (Yii::$app->request->isAjax) {
+//         $row = Yii::$app->request->post('Jurnal', []);
+//         if (!empty($row)) {
+//             $row = array_values($row);
+//         }
+//         if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+//             $row[] = [];
+//         return $this->renderAjax('_formJurnal', ['row' => $row]);
+//     } else {
+//         throw new NotFoundHttpException('The requested page does not exist.');
+//     }
+// }
     
     /**
     * Action to load a tabular form grid

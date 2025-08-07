@@ -23,16 +23,16 @@ use kartik\form\ActiveForm;
 
     <?= $form->errorSummary($model); ?>
 
-<<<<<<< HEAD
+
     <!-- <?php // $form->field($model, 'hari_id')->textInput(['placeholder' => 'Hari']) ?> -->
-=======
+
     <?= $form->field($model, 'hari_id')->textInput(['placeholder' => 'Hari']) ?>
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true, 'placeholder' => 'Nama']) ?>
 
     <?php
-<<<<<<< HEAD
+
     // $forms = [
     //     [
     //         'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Jurnal'),
@@ -55,7 +55,7 @@ use kartik\form\ActiveForm;
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Tambah' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Batal'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
-=======
+
     $forms = [
         [
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Jurnal'),
@@ -78,7 +78,7 @@ use kartik\form\ActiveForm;
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+
     </div>
 
     <?php ActiveForm::end(); ?>

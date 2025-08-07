@@ -17,7 +17,7 @@ class GuruController extends Controller
     public function behaviors()
     {
         return [
-            'ghost-access'=> [
+            'ghost-access' => [
                 'class' => 'app\modules\UserManagement\components\GhostAccessControl',
             ],
             'verbs' => [
@@ -52,14 +52,23 @@ class GuruController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+
+        // Pastikan relasi 'jurnals' mengembalikan data yang valid
+        $jurnals = $model->jurnals; // Ini akan mengembalikan array atau objek ActiveRecord
+        if ($jurnals === null) {
+            $jurnals = []; // Jika tidak ada data jurnal, set sebagai array kosong
+        }
+
         $providerJurnal = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->jurnals,
+            'allModels' => $jurnals,
         ]);
+
         return $this->render('view', [
             'model' => $model,
             'providerJurnal' => $providerJurnal,
         ]);
     }
+
 
     /**
      * Creates a new Guru model.
@@ -71,15 +80,18 @@ class GuruController extends Controller
         $model = new Guru();
 
         if ($this->request->isPost) {
-<<<<<<< HEAD
-            // if ($model->loadAll($this->request->post()) && $model->saveAll()) {
-            //     Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
-            //     return $this->redirect(['view', 'id' => $model->guru_id]);
-            // }
-            if ($model->load($this->request->post()) && $model->save()) {
-=======
+            // Tambahkan logika generate guru_id otomatis
+            $lastGuru = Guru::find()->orderBy(['guru_id' => SORT_DESC])->one();
+            if ($lastGuru && preg_match('/^GURU-(\d{4})$/', $lastGuru->guru_id, $matches)) {
+                $lastNumber = (int)$matches[1];
+            } else {
+                $lastNumber = 0;
+            }
+
+            $newId = 'GURU-' . str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+            $model->guru_id = $newId;
+
             if ($model->loadAll($this->request->post()) && $model->saveAll()) {
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
                 Yii::$app->session->setFlash('success', "Data berhasil ditambahkan");
                 return $this->redirect(['view', 'id' => $model->guru_id]);
             }
@@ -91,6 +103,7 @@ class GuruController extends Controller
             'model' => $model,
         ]);
     }
+
 
     /**
      * Updates an existing Guru model.
@@ -134,7 +147,7 @@ class GuruController extends Controller
         return $this->redirect(['index']);
     }
 
-    
+
     /**
      * Finds the Guru model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -150,15 +163,15 @@ class GuruController extends Controller
             throw new NotFoundHttpException('Data tidak ditemukan.');
         }
     }
-    
+
     /**
-    * Action to load a tabular form grid
-    * for Jurnal
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
+     * Action to load a tabular form grid
+     * for Jurnal
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
     public function actionAddJurnal()
     {
         if ($this->request->isAjax) {
@@ -166,7 +179,7 @@ class GuruController extends Controller
             if (!empty($row)) {
                 $row = array_values($row);
             }
-            if(($this->request->post('isNewRecord') && $this->request->post('_action') == 'load' && empty($row)) || $this->request->post('_action') == 'add')
+            if (($this->request->post('isNewRecord') && $this->request->post('_action') == 'load' && empty($row)) || $this->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formJurnal', ['row' => $row]);
         } else {

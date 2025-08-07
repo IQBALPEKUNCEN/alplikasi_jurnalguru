@@ -1,86 +1,126 @@
 <?php
 
 use yii\helpers\Html;
-use kartik\form\ActiveForm;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\base\Tahunajaran */
-/* @var $form kartik\form\ActiveForm */
+/* @var $model app\models\Tahunajaran */
+/* @var $form yii\widgets\ActiveForm */
 
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
-    'viewParams' => [
-        'class' => 'Historykelas', 
-        'relID' => 'historykelas', 
-        'value' => \yii\helpers\Json::encode($model->historykelas),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
-    'viewParams' => [
-        'class' => 'Jurnal', 
-        'relID' => 'jurnal', 
-        'value' => \yii\helpers\Json::encode($model->jurnals),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
+// CSS untuk styling form tahun ajaran
+$this->registerCss("
+    /* Background gradient untuk body */
+    body {
+        background: linear-gradient(to right, #c9d6ff, #e2e2e2); // Gradient biru ke abu-abu untuk background
+    }
+
+    /* Styling untuk card utama */
+    .tahunajaran-form .card {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); // Shadow untuk efek kedalaman
+        border: none;
+        border-radius: 15px; // Rounded corners
+        margin: 30px auto;
+        max-width: 600px;
+    }
+
+    /* Styling untuk header card */
+    .tahunajaran-form .card-header {
+        background: linear-gradient(135deg, #2196f3, #1e88e5); // Gradient biru untuk header
+        color: white;
+        font-size: 22px;
+        padding: 20px;
+        border-radius: 15px 15px 0 0;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    /* Styling untuk body card */
+    .tahunajaran-form .card-body {
+        padding: 25px;
+        background-color: #fff; // Background putih untuk body
+        border-radius: 0 0 15px 15px;
+    }
+
+    /* Styling untuk input form */
+    .form-control {
+        border-radius: 8px; // Rounded corners untuk input
+        padding: 10px;
+    }
+
+    /* Styling untuk label form */
+    .form-group label {
+        font-weight: 600; // Bold untuk label
+    }
+
+    /* Styling untuk tombol success (hijau) */
+    .tahunajaran-form .btn-success {
+        background: linear-gradient(135deg, #43e97b, #38f9d7); // Gradient hijau untuk tombol simpan
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px; // Rounded button
+    }
+
+    /* Styling untuk tombol primary (ungu) */
+    .tahunajaran-form .btn-primary {
+        background: linear-gradient(135deg, #a29bfe, #6c5ce7); // Gradient ungu untuk tombol update
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px; // Rounded button
+    }
+
+    /* Styling untuk tombol danger (merah) */
+    .tahunajaran-form .btn-danger {
+        border-radius: 25px; // Rounded button
+        padding: 10px 20px;
+    }
+
+    /* Efek hover untuk semua tombol */
+    .tahunajaran-form .form-group .btn:hover {
+        transform: translateY(-2px); // Efek naik saat hover
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); // Shadow saat hover
+        transition: all 0.3s ease; // Transisi smooth
+    }
+");
 ?>
 
-<div class="tahunajaran-form">
-
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->errorSummary($model); ?>
-
-    <?= $form->field($model, 'kodeta')->textInput(['maxlength' => true, 'placeholder' => 'Kodeta']) ?>
-
-    <?= $form->field($model, 'semester')->dropDownList([ 'GASAL' => 'GASAL', 'GENAP' => 'GENAP', ], ['prompt' => '']) ?>
-
-    <?= $form->field($model, 'namata')->textInput(['maxlength' => true, 'placeholder' => 'Namata']) ?>
-
-    <?= $form->field($model, 'isaktif')->checkbox() ?>
-
-<<<<<<< HEAD
-    <!-- <?php
-=======
-    <?php
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
-    $forms = [
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Historykelas'),
-            'content' => $this->render('_formHistorykelas', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->historykelas),
-            ]),
-        ],
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Jurnal'),
-            'content' => $this->render('_formJurnal', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->jurnals),
-            ]),
-        ],
-    ];
-    echo kartik\tabs\TabsX::widget([
-        'items' => $forms,
-        'position' => kartik\tabs\TabsX::POS_ABOVE,
-        'encodeLabels' => false,
-        'pluginOptions' => [
-            'bordered' => true,
-            'sideways' => true,
-            'enableCache' => false,
-        ],
-    ]);
-<<<<<<< HEAD
-    ?> -->
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Tambah' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Batal'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
-=======
-    ?>
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
->>>>>>> a6e311bdffd97bea8565158ca4863bc50d6fc4da
+<div class="tahunajaran-form card">
+    <!-- Header card dengan judul dinamis berdasarkan operasi (tambah/edit) -->
+    <div class="card-header">
+        <?= $model->isNewRecord ? '🆕 Tambah Tahun Ajaran' : '✏️ Ubah Tahun Ajaran' ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <div class="card-body">
+        <?php $form = ActiveForm::begin(); ?>
 
+        <!-- Input untuk kode tahun ajaran -->
+        <?= $form->field($model, 'kodeta')->textInput(['maxlength' => true, 'placeholder' => 'Contoh: TA2024']) ?>
+
+        <!-- Dropdown untuk semester -->
+        <?= $form->field($model, 'semester')->dropDownList([
+            'ganjil' => '🟢 Ganjil',
+            'genap' => '🔵 Genap',
+        ], ['prompt' => '📚 Pilih Semester']) ?>
+
+        <!-- Input untuk nama tahun ajaran -->
+        <?= $form->field($model, 'namata')->textInput(['maxlength' => true, 'placeholder' => 'Contoh: Tahun Ajaran 2024/2025']) ?>
+
+        <!-- Checkbox untuk status aktif -->
+        <?= $form->field($model, 'isaktif')->checkbox(['label' => '✅ Tandai sebagai Tahun Ajaran Aktif']) ?>
+
+        <!-- Group tombol aksi -->
+        <div class="form-group mt-4 text-center">
+            <!-- Tombol submit dengan teks dinamis -->
+            <?= Html::submitButton($model->isNewRecord ? '💾 Simpan' : '🔄 Update', [
+                'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'
+            ]) ?>
+            <!-- Tombol batal -->
+            <?= Html::a('❌ Batal', Yii::$app->request->referrer, ['class' => 'btn btn-danger']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+    </div>
 </div>

@@ -28,6 +28,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $superadmin
  * @property integer $created_at
  * @property integer $updated_at
+ * @property Role[] $roles
+ * @property Role $role
  */
 class User extends UserIdentity
 {
@@ -328,6 +330,83 @@ class User extends UserIdentity
 			->viaTable(Yii::$app->getModule('user-management')->auth_assignment_table, ['user_id' => 'id']);
 	}
 
+	/**
+	 * Get first role name as string (for ucfirst() compatibility)
+	 * @return string
+	 */
+	public function getRole()
+	{
+		$roles = $this->roles;
+		$firstRole = $roles[0] ?? null;
+		return $firstRole ? $firstRole->name : '';
+	}
+
+	/**
+	 * Get first role object
+	 * @return Role|null
+	 */
+	public function getRoleObject()
+	{
+		$roles = $this->roles;
+		return $roles[0] ?? null;
+	}
+
+	/**
+	 * Get first role name
+	 * @return string
+	 */
+	public function getFirstRoleName()
+	{
+		$role = $this->roles[0] ?? null;
+		return $role ? $role->name : '';
+	}
+
+	/**
+	 * Get all role names as array
+	 * @return array
+	 */
+	public function getRoleNames()
+	{
+		return array_map(function ($role) {
+			return $role->name;
+		}, $this->roles);
+	}
+
+	/**
+	 * Check if user has specific role
+	 * @param string $roleName
+	 * @return bool
+	 */
+	public function hasRoleName($roleName)
+	{
+		foreach ($this->roles as $role) {
+			if ($role->name === $roleName) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get roles as comma separated string
+	 * @return string
+	 */
+	public function getRolesString()
+	{
+		return implode(', ', $this->getRoleNames());
+	}
+
+	
+
+	/**
+	 * Get first role name with proper case (ucfirst compatible)
+	 * @return string
+	 */
+	public function getRoleTitle()
+	{
+		$role = $this->getRole();
+		return $role ? ucfirst($role) : '';
+	}
 
 	/**
 	 * Make sure user will not deactivate himself and superadmin could not demote himself
