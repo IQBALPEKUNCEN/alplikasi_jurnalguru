@@ -102,7 +102,7 @@ CSS);
 
     <br>
 
-    <?php if ($providerHistorykelas->totalCount > 0): ?>
+    <!-- <?php if ($providerHistorykelas->totalCount > 0): ?>
         <?= GridView::widget([
             'dataProvider' => $providerHistorykelas,
             'pjax' => true,
@@ -125,7 +125,7 @@ CSS);
                 ],
             ],
         ]) ?>
-    <?php endif; ?>
+    <?php endif; ?> -->
 
     <?php if ($providerJurnal->totalCount > 0): ?>
         <?= GridView::widget([

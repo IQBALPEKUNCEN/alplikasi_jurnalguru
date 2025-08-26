@@ -54,6 +54,7 @@ class Siswa extends \yii\db\ActiveRecord
             [['nis', 'kode_kelas', 'no_hp'], 'string', 'max' => 20],
             [['nama', 'tempat_lahir', 'alamat'], 'string', 'max' => 255],
             [['kode_jk'], 'string', 'max' => 1],
+            [['telegram_id'], 'string', 'max' => 50], // ✅ tambahkan ini
 
         ];
     }
@@ -89,6 +90,7 @@ class Siswa extends \yii\db\ActiveRecord
             'tanggal_lahir' => 'Tanggal Lahir',
             'no_hp' => 'No Hp',
             'alamat' => 'Alamat',
+            'telegram_id' => 'Telegram ID', // ✅ tambahkan ini
         ];
     }
     
@@ -121,6 +123,8 @@ class Siswa extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Kelas::class, ['kode_kelas' => 'kode_kelas']);
     }
+
+    
     
 
 
@@ -174,4 +178,5 @@ class Siswa extends \yii\db\ActiveRecord
 
         return new \app\models\SiswaQuery(get_called_class());
     }
+    
 }

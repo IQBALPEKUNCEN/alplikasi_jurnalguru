@@ -22,12 +22,13 @@ class Siswa extends BaseSiswa
             [['nis', 'kode_kelas', 'no_hp'], 'string', 'max' => 20],
             [['nama', 'tempat_lahir', 'alamat'], 'string', 'max' => 255],
             [['kode_jk'], 'string', 'max' => 1],
+            [['telegram_id'], 'string', 'max' => 50], // ✅ tambahkan ini
 
 
-            // [['lock'], 'default', 'value' => '0'],
-            // [['lock'], 'mootensai\components\OptimisticLockValidator']
+                // [['lock'], 'default', 'value' => '0'],
+                // [['lock'], 'mootensai\components\OptimisticLockValidator']
 
-        ]);
+            ]);
     }
 
     public function getKodeKelas()
@@ -55,6 +56,13 @@ class Siswa extends BaseSiswa
     public function getJurusan()
     {
         return $this->hasOne(Jurusan::class, ['kode_jurusan' => 'kode_jurusan']);
+    }
+
+    public function attributeLabels()
+    {
+        return array_merge(parent::attributeLabels(), [
+            'telegram_id' => 'Telegram ID', // ✅ tambahkan ini
+        ]);
     }
     
 }

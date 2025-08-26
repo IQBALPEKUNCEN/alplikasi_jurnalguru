@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\base\Historykelas */
 
-$this->title = 'Create Historykelas';
-$this->params['breadcrumbs'][] = ['label' => 'Historykelas', 'url' => ['index']];
+$this->title = 'Buat Pengumuman Baru';
+$this->params['breadcrumbs'][] = ['label' => 'Pengumuman', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="historykelas-create">

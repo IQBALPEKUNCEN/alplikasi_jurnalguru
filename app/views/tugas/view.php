@@ -290,14 +290,14 @@ $this->registerCss("
                             'attribute' => 'tanggal_dibuat',
                             'label' => '📅 Tanggal Dibuat',
                             'value' => function ($model) {
-                                return date('d F Y, H:i', strtotime($model->tanggal_dibuat));
+                                return date('d F Y', strtotime($model->tanggal_dibuat));
                             },
                         ],
                         [
                             'attribute' => 'tanggal_selesai',
                             'label' => '⏰ Deadline',
                             'value' => function ($model) {
-                                $deadline = date('d F Y, H:i', strtotime($model->tanggal_selesai));
+                                $deadline = date('d F Y', strtotime($model->tanggal_selesai));
                                 $now = time();
                                 $deadlineTime = strtotime($model->tanggal_selesai);
 

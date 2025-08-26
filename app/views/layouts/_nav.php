@@ -291,7 +291,7 @@
                     ['label' => '<i class="fas fa-user-graduate"></i> Siswa', 'url' => ['/siswa/index']],
                     ['label' => '<i class="fas fa-chalkboard-teacher"></i> Guru', 'url' => ['/guru/index']],
                     ['label' => '<i class="fas fa-door-closed"></i> Ruangan', 'url' => ['/ruangan/index']],
-                    //['label' => '<i class="fas fa-history"></i> History Kelas', 'url' => ['/historykelas/index']],
+                    ['label' => '<i class="fas fa-history"></i> Pengumuman', 'url' => ['/historykelas/index']],
                 ],
             ],
 

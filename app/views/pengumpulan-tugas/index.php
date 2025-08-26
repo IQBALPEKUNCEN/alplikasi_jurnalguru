@@ -197,7 +197,7 @@ $this->registerCss("
             <div class="stats-card">
                 <i class="fas fa-calendar-day"></i>
                 <div class="stats-number"><?= date('d') ?></div>
-                <div class="stats-label">Hari Ini</div>
+                <div class="stats-label">Tanggal ini</div>
             </div>
             <div class="stats-card">
                 <i class="fas fa-calendar-alt"></i>

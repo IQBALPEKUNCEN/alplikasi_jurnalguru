@@ -175,6 +175,7 @@ CSS);
             'tanggal_lahir',
             'no_hp',
             'alamat',
+            'telegram_id', // ✅ tambahkan di sini juga,
         ], User::getCurrentUser()->hasRoleName('wali_kelas') ? [] : [[
             'class' => 'yii\grid\ActionColumn',
             'template' => '{view} {update} {delete}',

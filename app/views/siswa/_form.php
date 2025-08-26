@@ -114,6 +114,11 @@ $this->registerCss("
                 <?= $form->field($model, 'no_hp')->textInput(['maxlength' => true, 'placeholder' => '08xxxxxxxx']) ?>
 
                 <?= $form->field($model, 'alamat')->textarea(['rows' => 3, 'placeholder' => 'Alamat lengkap siswa']) ?>
+                <?= $form->field($model, 'telegram_id')->textInput([
+                    'maxlength' => true,
+                    'placeholder' => 'Masukkan Telegram ID siswa'
+                ]) ?>
+
             </div>
         </div>
 
